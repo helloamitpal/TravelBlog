@@ -5,7 +5,7 @@ import translate from '../../../locale';
 import './footer.scss';
 
 const Footer = () => (
-  <footer className="page-footer blue">
+  <footer className="page-footer">
     <div className="footer-copyright">
       <p className="container">{translate('common.copyright')}</p>
     </div>

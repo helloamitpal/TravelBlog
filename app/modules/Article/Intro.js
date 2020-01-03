@@ -26,8 +26,8 @@ const Intro = () => (
             <p>Articles</p>
           </div>
           <div className="col">
-            <h1>1</h1>
-            <p>Story teller</p>
+            <h1>200</h1>
+            <p>Subscriptions</p>
           </div>
         </div>
       </section>

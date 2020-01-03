@@ -10,6 +10,7 @@ import Header from '../components/molecules/Header';
 import Footer from '../components/molecules/Footer';
 import LocaleContext from '../locale/localeContext';
 import { setLocaleCookie } from '../services/cookieService';
+import Newsletter from '../components/molecules/Newsletter';
 
 const Router = () => {
   const [selectedLocale, setSelectedLocale] = useState(config.FALLBACK_LANGUAGE);
@@ -36,6 +37,7 @@ const Router = () => {
             <Route path="" render={(props) => <NotFoundModule {...props} />} />
           </Switch>
         </div>
+        <Newsletter />
         <Footer />
       </div>
     </LocaleContext.Provider>

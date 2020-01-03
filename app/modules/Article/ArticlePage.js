@@ -47,7 +47,7 @@ const ArticlePage = ({
   const renderArticles = () => {
     return articles.map((article) => (
       <div className="col s12 m6 l6 xl4 card-container" key={article.title}>
-        <div className="card large">
+        <div className="card medium">
           <div className="card-image">
             <LazyLoadImage alt={article.title} src={article.urlToImage} />
           </div>

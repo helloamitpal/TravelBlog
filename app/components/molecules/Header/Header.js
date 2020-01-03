@@ -14,7 +14,7 @@ const Header = ({ onChangeLocale }) => {
   const { scrollYPos } = useScroll();
 
   useEffect(() => {
-    setScrolled(scrollYPos >= 100);
+    setScrolled(scrollYPos >= 50);
   }, [scrollYPos]);
 
   const toggleMenu = () => setMenuToggle(!menuOpen);

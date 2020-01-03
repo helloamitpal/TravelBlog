@@ -1,0 +1,90 @@
+@import './colors.scss';
+
+@media only screen and (min-width: 992px) {
+  .sidenav-trigger {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .brand-logo {
+    width: 80%;
+    text-align: center;
+  }
+
+  .subscribe-btn {
+    text-align: center;
+  }
+
+  .latest-article {
+    color: $font-color;
+  }
+
+  .app-container {
+    background-size: 100% 550px !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  nav .brand-logo {
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (max-width: 434px) {
+  nav .brand-logo {
+    display: none;
+  }
+
+  .app-container {
+    background-size: 100% 500px !important;
+  }
+
+  .banner-section {
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (max-width: 403px) {
+  .banner-section {
+    font-size: 0.8em;
+  }
+
+  .app-container {
+    background-size: 100% 450px !important;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .banner-section {
+    font-size: 0.7em;
+  }
+
+  .app-container {
+    background-size: 100% 420px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .quotes {
+    display: none;
+  }
+
+  .banner-section {
+    font-size: 0.6em;
+  }
+
+  .app-container {
+    background-size: 100% 340px !important;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  .banner-section {
+    font-size: 0.5em;
+  }
+
+  .app-container {
+    background-size: 100% 320px !important;
+  }
+}

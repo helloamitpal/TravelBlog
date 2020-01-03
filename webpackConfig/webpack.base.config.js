@@ -92,7 +92,9 @@ module.exports = (options) => ({
     new CopyWebpackPlugin([
       { from: 'app/locale/langs/locales.json', to: 'langs' },
       { from: 'public/assets/background.jpg', to: 'assets' },
-      { from: 'public/assets/latest-story.jpg', to: 'assets' }
+      { from: 'public/assets/latest-story.jpg', to: 'assets' },
+      { from: 'public/assets/facebook.svg', to: 'assets' },
+      { from: 'public/assets/instagram.svg', to: 'assets' }
     ]),
 
     // PWA settings
