@@ -1,15 +1,15 @@
 {
-  "name": "react-csr-template",
+  "name": "TravelBlog",
   "version": "1.0.0",
   "private": true,
   "engines": {
     "node": ">=8.10.0",
     "npm": ">=5"
   },
-  "description": "This is a react CSR boilerplate code.",
+  "description": "This is a personal travel blog website",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amit040386/react-csr-template"
+    "url": "https://github.com/amit040386/TravelBlog"
   },
   "keywords": [
     "javascript",

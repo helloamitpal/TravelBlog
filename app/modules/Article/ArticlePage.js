@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Helmet } from 'react-helmet';
@@ -10,6 +10,9 @@ import LoadingIndicator from '../../components/atoms/LoadingIndicator';
 import Message from '../../components/atoms/Message';
 import config from '../../config';
 import translate from '../../locale';
+import Intro from './Intro';
+
+import './Article.scss';
 
 const ArticlePage = ({
   articleState: { articles, error, loading },
@@ -18,7 +21,6 @@ const ArticlePage = ({
   match,
   location: { pathname }
 }) => {
-  const category = articles[0] && articles[0].source.name;
   const head = () => (
     <Helmet key={`article-page-${Math.random()}`}>
       <title>{translate('article.articleList')}</title>
@@ -72,17 +74,12 @@ const ArticlePage = ({
       {loading && <LoadingIndicator />}
       {!loading && error && <Message type="error" title={translate('common.oops')} description={error} />}
       <div className="row">
+        <Intro />
         {
           articles && articles.length ? (
-            <Fragment>
-              <div className="section">
-                <h3>{category || translate('article.popularArticle')}</h3>
-              </div>
-              <div className="divider" />
-              <div className="section">
-                <div className="row">{renderArticles()}</div>
-              </div>
-            </Fragment>
+            <div className="section">
+              <div className="row">{renderArticles()}</div>
+            </div>
           ) : null
         }
       </div>

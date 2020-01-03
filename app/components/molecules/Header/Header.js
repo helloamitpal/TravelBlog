@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import LocaleSelector from '../../atoms/LocaleSelector';
+import { useScroll } from '../../hooks/useScroll';
 import translate from '../../../locale';
 
 import './header.scss';
 
 const Header = ({ onChangeLocale }) => {
   const [menuOpen, setMenuToggle] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollYPos } = useScroll();
+
+  useEffect(() => {
+    setScrolled(scrollYPos >= 100);
+  }, [scrollYPos]);
 
   const toggleMenu = () => setMenuToggle(!menuOpen);
 
   return (
     <div className="header-container navbar-fixed">
-      <nav className="red">
+      <nav className={scrolled ? 'blue' : 'transparent'}>
         <div className="container">
           <div className="nav-wrapper">
             <a href="/" className="brand-logo">
@@ -35,7 +42,7 @@ const Header = ({ onChangeLocale }) => {
               style={menuOpen ? { transform: 'translateX(0px)' } : null}
             >
               <li>
-                <a className="subheader">{translate('common.menu')}</a>
+                <a className="subheader">{translate('common.appName')}</a>
               </li>
               <li>
                 <div className="divider" />
@@ -46,35 +53,25 @@ const Header = ({ onChangeLocale }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/articles/techradar" className="item" onClick={toggleMenu}>
-                  {translate('article.techRadar')}
+                <Link to="/" className="item">
+                  {translate('common.contactUs')}
                 </Link>
               </li>
               <li>
-                <Link to="/articles/mashable" className="item" onClick={toggleMenu}>
-                  {translate('article.mashable')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/articles/the-verge" className="item" onClick={toggleMenu}>
-                  {translate('article.verge')}
+                <Link to="/" className="item">
+                  {translate('common.blogs')}
                 </Link>
               </li>
             </ul>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
-                <Link to="/articles/techradar" className="item">
-                  {translate('article.techRadar')}
+                <Link to="/" className="item">
+                  {translate('common.contactUs')}
                 </Link>
               </li>
               <li>
-                <Link to="/articles/mashable" className="item">
-                  {translate('article.techRadar')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/articles/the-verge" className="item">
-                  {translate('article.verge')}
+                <Link to="/" className="item">
+                  {translate('common.blogs')}
                 </Link>
               </li>
             </ul>

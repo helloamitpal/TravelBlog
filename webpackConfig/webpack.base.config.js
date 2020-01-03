@@ -90,7 +90,9 @@ module.exports = (options) => ({
 
     // copying service worker custom files for listening push notifications
     new CopyWebpackPlugin([
-      { from: 'app/locale/langs/locales.json', to: 'langs' }
+      { from: 'app/locale/langs/locales.json', to: 'langs' },
+      { from: 'public/assets/background.jpg', to: 'assets' },
+      { from: 'public/assets/latest-story.jpg', to: 'assets' }
     ]),
 
     // PWA settings

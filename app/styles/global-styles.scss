@@ -2,8 +2,33 @@
 
 body {
   color: $font-color;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .link {
   cursor: pointer;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.app-container {
+  background-image: url('../../public/assets/background.jpg');
+  background-size: 100% 600px;
+  background-repeat: no-repeat;
+}
+
+nav ul a {
+  font-weight: bold;
+}
+
+.brand-logo {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 993px) {
+  .container {
+      width: 95%;
+  }
 }

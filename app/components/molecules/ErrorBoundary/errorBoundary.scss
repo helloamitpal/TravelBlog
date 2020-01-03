@@ -1,3 +1,5 @@
+@import '../../../styles/colors.scss';
+
 .error-container {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,7 @@
 
   h1 {
     font-size: 1.5em;
-    color: #fff;
+    color: $default-background-color;
     width: 100%;
     margin: 0;
     margin-bottom: 50px;
