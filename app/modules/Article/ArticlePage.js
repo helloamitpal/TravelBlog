@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import * as articleActionCreator from './articleActionCreator';
 import LoadingIndicator from '../../components/atoms/LoadingIndicator';
 import Message from '../../components/atoms/Message';
 import config from '../../config';
 import translate from '../../locale';
-import Intro from './Intro';
+import Newsletter from '../../components/molecules/Newsletter';
+import Introduction from '../../components/molecules/Introduction';
+import Aboutus from '../../components/molecules/Aboutus';
+import Card from '../../components/atoms/Card';
 
 import './Article.scss';
 
@@ -23,17 +25,11 @@ const ArticlePage = ({
 }) => {
   const head = () => (
     <Helmet key={`article-page-${Math.random()}`}>
-      <title>{translate('article.articleList')}</title>
-      <meta property="og:title" content="Article list" />
-      <meta
-        name="description"
-        content="Breaking news,latest articles, popular articles from most popular news websites of the world"
-      />
+      <title>{translate('common.appName')}</title>
+      <meta property="og:title" content={translate('common.appName')} />
+      <meta name="description" content={translate('common.appDesc')} />
       <meta name="robots" content="index, follow" />
-      <link
-        rel="canonical"
-        href={`https://react-csr-template.herokuapp.com${pathname || ''}`}
-      />
+      <link rel="canonical" href={`https://react-csr-template.herokuapp.com${pathname || ''}`} />
     </Helmet>
   );
 
@@ -46,19 +42,7 @@ const ArticlePage = ({
 
   const renderArticles = () => {
     return articles.map((article) => (
-      <div className="col s12 m6 l6 xl4 card-container" key={article.title}>
-        <div className="card medium">
-          <div className="card-image">
-            <LazyLoadImage alt={article.title} src={article.urlToImage} />
-          </div>
-          <div className="card-content">
-            <span className="card-title">{article.title}</span>
-          </div>
-          <div className="card-action">
-            <span className="link" onClick={() => gotoArticleDetails(article)}>{translate('common.readMore')}</span>
-          </div>
-        </div>
-      </div>
+      <Card title={article.title} image={article.urlToImage} onSelect={() => gotoArticleDetails(article)} className="col s12 m6 l6 xl4" />
     ));
   };
 
@@ -69,21 +53,25 @@ const ArticlePage = ({
   }, [match.params]);
 
   return (
-    <div className="article-page-container">
-      {head()}
-      {loading && <LoadingIndicator />}
-      {!loading && error && <Message type="error" title={translate('common.oops')} description={error} />}
-      <div className="row">
-        <Intro />
-        {
-          articles && articles.length ? (
-            <div className="section">
-              <div className="row">{renderArticles()}</div>
-            </div>
-          ) : null
-        }
+    <Fragment>
+      <Introduction />
+      <div className="article-page-container" id="categories">
+        {head()}
+        {loading && <LoadingIndicator />}
+        {!loading && error && <Message type="error" title={translate('common.oops')} description={error} />}
+        <div className="row">
+          {
+            articles && articles.length ? (
+              <div className="section">
+                <div className="row">{renderArticles()}</div>
+              </div>
+            ) : null
+          }
+        </div>
       </div>
-    </div>
+      <Aboutus />
+      <Newsletter />
+    </Fragment>
   );
 };
 

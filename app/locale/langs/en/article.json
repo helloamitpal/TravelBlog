@@ -1,9 +1,5 @@
 {
-  "techRadar": "Tech Radar",
-  "mashable": "Mashable",
-  "verge": "The Verge",
-  "detailsTitle": "Article details",
-  "popularArticle": "Popular Articles",
-  "fullArticle": "Full Article",
-  "articleList": "Article List"
+  "articles": "Articles",
+  "latestArticles": "Latest Articles",
+  "article": "Article"
 }

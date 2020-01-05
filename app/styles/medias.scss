@@ -7,11 +7,6 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .brand-logo {
-    width: 80%;
-    text-align: center;
-  }
-
   .subscribe-btn {
     text-align: center;
   }
@@ -20,71 +15,51 @@
     color: $font-color;
   }
 
-  .app-container {
-    background-size: 100% 550px !important;
+  .banner-section h1 {
+    font-size: 3.6em !important;
+  }
+
+  .latest-article {
+    margin-top: 1em;
   }
 }
 
-@media only screen and (max-width: 700px) {
-  nav .brand-logo {
-    font-size: 1.2em;
+@media only screen and (max-width: 825px) {
+  .aboutus {
+    flex-direction: column !important;
   }
 }
 
-@media only screen and (max-width: 434px) {
-  nav .brand-logo {
-    display: none;
+@media only screen and (max-width: 615px) {
+  .banner-section h1 {
+    font-size: 2.8em !important;
   }
 
   .app-container {
-    background-size: 100% 500px !important;
-  }
-
-  .banner-section {
-    font-size: 0.9em;
+    background-size: 100% 29em;
   }
 }
 
-@media only screen and (max-width: 403px) {
-  .banner-section {
-    font-size: 0.8em;
-  }
-
-  .app-container {
-    background-size: 100% 450px !important;
+@media only screen and (max-width: 520px) {
+  .aboutus {
+    flex-direction: column;
   }
 }
 
-@media only screen and (max-width: 360px) {
-  .banner-section {
-    font-size: 0.7em;
-  }
-
-  .app-container {
-    background-size: 100% 420px !important;
+@media only screen and (max-width: 349px) {
+  .banner-section h1 {
+    font-size: 2.7em !important;
   }
 }
 
-@media only screen and (max-width: 320px) {
-  .quotes {
-    display: none;
-  }
-
-  .banner-section {
-    font-size: 0.6em;
-  }
-
-  .app-container {
-    background-size: 100% 340px !important;
+@media only screen and (max-width: 335px) {
+  .banner-section h1 {
+    font-size: 2.6em !important;
   }
 }
 
-@media only screen and (max-width: 270px) {
-  .banner-section {
-    font-size: 0.5em;
-  }
-
-  .app-container {
-    background-size: 100% 320px !important;
+@media only screen and (max-width: 310px) {
+  .banner-section h1 {
+    font-size: 2.5em !important;
   }
 }

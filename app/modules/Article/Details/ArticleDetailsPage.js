@@ -5,42 +5,25 @@ import PropTypes from 'prop-types';
 import translate from '../../../locale';
 
 const ArticleDetailsPage = ({ history, location: { state, pathname } }) => {
-  const { title, urlToImage, description, content, url } = state;
+  const { title, urlToImage, description, content } = state;
 
   const head = () => (
     <Helmet key={`article-details-page-${Math.random()}`}>
-      <title>{translate('article.detailsTitle')}</title>
-      <meta property="og:title" content="Article details" />
-      <meta
-        name="description"
-        content="Breaking news,latest articles, popular articles from most popular news websites of the world"
-      />
+      <title>{translate('article.article')}</title>
+      <meta property="og:title" content={`${translate('article.article')} - ${title}`} />
+      <meta name="description" content={translate('common.appDesc')} />
       <meta name="robots" content="index, follow" />
-      <link
-        rel="canonical"
-        href={`https://react-csr-template.herokuapp.com${pathname || ''}`}
-      />
+      <link rel="canonical" href={`https://react-csr-template.herokuapp.com${pathname || ''}`} />
     </Helmet>
   );
 
   return (
-    <div className="article-details-ccontainer">
+    <div className="article-details-container">
       {head()}
       <h4>{title}</h4>
       <img className="responsive-img" src={urlToImage} alt={title} />
       <p>{description}</p>
       <p>{content}</p>
-      <div className="divider" />
-      <div className="section">
-        <a
-          href={url}
-          className="waves-effect waves-light btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {translate('article.fullArticle')}
-        </a>
-      </div>
     </div>
   );
 };

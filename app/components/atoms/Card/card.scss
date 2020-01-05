@@ -1,0 +1,36 @@
+@import '../../../styles/colors.scss';
+
+.card-container {
+  .card {
+    height: 20em;
+    position: relative;
+
+    .card-image {
+      overflow: hidden;
+
+      &, img {
+        height: 100%;
+        width: 100%;
+      }
+
+      &:hover img {
+        transform: scale(1.1,1.1);
+        transition: all 0.3s linear;
+      }
+    }
+
+    .card-content {
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: $secondary-font-color;
+      background-image: $card-content-background;
+
+      .card-title {
+        font-size: 1.2em;
+        margin: 0;
+      }
+    }
+  }
+}

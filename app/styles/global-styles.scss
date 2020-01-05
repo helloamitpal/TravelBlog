@@ -13,9 +13,9 @@ body {
   background-color: transparent;
 }
 
-.app-container {
+.app-container:not(.non-home-page) {
   background-image: url('../../public/assets/background.jpg');
-  background-size: 100% 600px;
+  background-size: 100% 33em;
   background-repeat: no-repeat;
 }
 

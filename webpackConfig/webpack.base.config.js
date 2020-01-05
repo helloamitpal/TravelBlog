@@ -94,7 +94,8 @@ module.exports = (options) => ({
       { from: 'public/assets/background.jpg', to: 'assets' },
       { from: 'public/assets/latest-story.jpg', to: 'assets' },
       { from: 'public/assets/facebook.svg', to: 'assets' },
-      { from: 'public/assets/instagram.svg', to: 'assets' }
+      { from: 'public/assets/instagram.svg', to: 'assets' },
+      { from: 'public/assets/aboutus.jpg', to: 'assets' }
     ]),
 
     // PWA settings

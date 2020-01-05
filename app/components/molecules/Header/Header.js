@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import translate from '../../../locale';
 
 import './header.scss';
 
-const Header = ({ onChangeLocale }) => {
+const Header = ({ onChangeLocale, navbarClassName }) => {
   const [menuOpen, setMenuToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollYPos } = useScroll();
@@ -19,28 +19,38 @@ const Header = ({ onChangeLocale }) => {
 
   const toggleMenu = () => setMenuToggle(!menuOpen);
 
+  const menus = (
+    <Fragment>
+      <li>
+        <Link to="#categories" className="item">
+          {translate('common.categories')}
+        </Link>
+      </li>
+      <li>
+        <Link to="#aboutus" className="item">
+          {translate('common.aboutus')}
+        </Link>
+      </li>
+      <li>
+        <Link to="#newsletter" className="item">
+          {translate('common.contactUs')}
+        </Link>
+      </li>
+    </Fragment>
+  );
+
   return (
     <div className="header-container navbar-fixed">
-      <nav className={scrolled ? 'blue' : 'transparent'}>
+      <nav className={navbarClassName || (scrolled ? 'blue' : 'transparent')}>
         <div className="container">
           <div className="nav-wrapper">
-            <a href="/" className="brand-logo">
-              {translate('common.appName')}
-            </a>
+            <a href="/" className="brand-logo" />
             <LocaleSelector className="right" onChangeLocale={onChangeLocale} />
             <span onClick={toggleMenu} className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </span>
-            <div
-              className="sidenav-overlay"
-              style={menuOpen ? { display: 'block', opacity: 1 } : null}
-              onClick={toggleMenu}
-            />
-            <ul
-              id="slide-out"
-              className="sidenav"
-              style={menuOpen ? { transform: 'translateX(0px)' } : null}
-            >
+            <div className="sidenav-overlay" style={menuOpen ? { display: 'block', opacity: 1 } : null} onClick={toggleMenu} />
+            <ul id="slide-out" className="sidenav" style={menuOpen ? { transform: 'translateX(0px)' } : null}>
               <li>
                 <a className="subheader">{translate('common.appName')}</a>
               </li>
@@ -52,28 +62,10 @@ const Header = ({ onChangeLocale }) => {
                   {translate('common.home')}
                 </Link>
               </li>
-              <li>
-                <Link to="/" className="item">
-                  {translate('common.contactUs')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="item">
-                  {translate('common.blogs')}
-                </Link>
-              </li>
+              {menus}
             </ul>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>
-                <Link to="/" className="item">
-                  {translate('common.contactUs')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="item">
-                  {translate('common.blogs')}
-                </Link>
-              </li>
+            <ul id="nav-mobile" className="right hide-on-med-and-down nav-menus">
+              {menus}
             </ul>
           </div>
         </div>
@@ -83,11 +75,13 @@ const Header = ({ onChangeLocale }) => {
 };
 
 Header.propTypes = {
-  onChangeLocale: PropTypes.func
+  onChangeLocale: PropTypes.func,
+  navbarClassName: PropTypes.string
 };
 
 Header.defaultProps = {
-  onChangeLocale: null
+  onChangeLocale: null,
+  navbarClassName: ''
 };
 
 export default Header;
