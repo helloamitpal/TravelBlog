@@ -14,7 +14,7 @@ import Introduction from '../../components/molecules/Introduction';
 import Aboutus from '../../components/molecules/Aboutus';
 import Card from '../../components/atoms/Card';
 
-import './Article.scss';
+import './article.scss';
 
 const ArticlePage = ({
   articleState: { articles, error, loading },

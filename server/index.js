@@ -7,9 +7,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const proxy = require('http-proxy-middleware');
 
-const logger = require('./util//logger');
+const logger = require('./util/logger');
 const argv = require('./util/argv');
 const port = require('./util/port');
+const routes = require('./routes');
 const setupMiddleware = require('./middlewares/frontendMiddleware');
 
 const app = express();
@@ -45,6 +46,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/api/v1/', routes);
+
 // get the intended host and port number, use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
@@ -54,6 +57,10 @@ const prettyHost = customHost || 'localhost';
 setupMiddleware(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/'
+});
+
+process.on('uncaughtException', (exception) => {
+  process.stdout.write(exception.toString());
 });
 
 // Start your app.

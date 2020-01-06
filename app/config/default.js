@@ -4,5 +4,5 @@ export default {
   API_BASE_URL: 'https://newsapi.org/v2',
   API_TIMEOUT: 4000,
   FALLBACK_LANGUAGE: 'en',
-  EMAIL: 'travelthroughmylense.am@gmail.com'
+  EMAIL: 'am.travelthroughmylense@gmail.com'
 };

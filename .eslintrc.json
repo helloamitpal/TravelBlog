@@ -19,6 +19,7 @@
     "arrow-parens": ["off"],
     "react/jsx-fragments": ["off"],
     "import/no-extraneous-dependencies": ["off"],
+    "class-methods-use-this": ["off"],
 
     "react/require-default-props": ["error"],
     "react-hooks/rules-of-hooks": "error",
