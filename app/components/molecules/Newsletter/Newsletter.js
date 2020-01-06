@@ -5,6 +5,8 @@ import config from '../../../config';
 
 import facebookIcon from '../../../../public/assets/facebook.svg';
 import instagramIcon from '../../../../public/assets/instagram.svg';
+import emailIcon from '../../../../public/assets/email.svg';
+import youtubeIcon from '../../../../public/assets/youtube.svg';
 
 import './newsletter.scss';
 
@@ -32,8 +34,11 @@ const Newsletter = () => {
           <a className="instagram col">
             <img src={instagramIcon} alt="instagram" />
           </a>
-          <a className="col" href={`mailto:${config.EMAIL}`}>
-            <i className="material-icons dp48">email</i>
+          <a className="col youtube">
+            <img src={youtubeIcon} alt="youtube" />
+          </a>
+          <a className="col email" href={`mailto:${config.EMAIL}`}>
+            <img src={emailIcon} alt="email" />
           </a>
         </div>
       </div>

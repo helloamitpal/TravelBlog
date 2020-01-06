@@ -44,12 +44,14 @@ module.exports = (options) => ({
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
-        use: 'file-loader'
-      },
-      {
-        test: /\.(jpg|png|gif)$/,
-        use: 'file-loader'
+        test: /\.(eot|svg|otf|ttf|woff|woff2|jpg|png|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/'
+          }
+        }]
       },
       {
         test: /\.html$/,
@@ -90,19 +92,14 @@ module.exports = (options) => ({
 
     // copying service worker custom files for listening push notifications
     new CopyWebpackPlugin([
-      { from: 'app/locale/langs/locales.json', to: 'langs' },
-      { from: 'public/assets/background.jpg', to: 'assets' },
-      { from: 'public/assets/latest-story.jpg', to: 'assets' },
-      { from: 'public/assets/facebook.svg', to: 'assets' },
-      { from: 'public/assets/instagram.svg', to: 'assets' },
-      { from: 'public/assets/aboutus.jpg', to: 'assets' }
+      { from: 'app/locale/langs/locales.json', to: 'langs' }
     ]),
 
     // PWA settings
     new WebpackPwaManifest({
-      name: 'react-csr-template',
-      short_name: 'react-csr-template',
-      description: 'This is a react CSR boilerplate code.',
+      name: 'travelthroughmylense',
+      short_name: 'travelthroughmylense',
+      description: 'This is a personal travel blog website.',
       background_color: '#ffffff',
       theme_color: '#000000',
       start_url: '/',
@@ -111,7 +108,7 @@ module.exports = (options) => ({
       author: {
         name: 'Amit Pal',
         website: 'https://www.linkedin.com/in/amit-pal-0241423a/',
-        github: 'https://github.com/amit040386/react-csr-template'
+        github: 'https://github.com/amit040386/TravelBlog'
       },
       icons: [
         {
