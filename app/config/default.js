@@ -5,7 +5,6 @@ export default {
   FALLBACK_LANGUAGE: 'en',
   EMAIL: 'am.travelthroughmylense@gmail.com',
   PROD_URL: 'https://travelthroughmylense.herokuapp.com/',
-  MAX_ARTICLE_SHOW: 5,
   LATEST_ARTICLES_COUNT: 3,
   DATE_FORMAT: 'MMMM Do YYYY',
   FACEBOOK_URL: 'www.facebook.com',

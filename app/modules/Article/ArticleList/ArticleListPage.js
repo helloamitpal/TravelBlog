@@ -1,17 +1,49 @@
-import React from 'react';
+import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import translate from '../../../locale';
+import * as articleActionCreator from '../articleActionCreator';
+import Message from '../../../components/atoms/Message';
+import LoadingIndicator from '../../../components/atoms/LoadingIndicator';
+import LocaleContext from '../../../locale/localeContext';
 import config from '../../../config';
+import Card from '../../../components/atoms/Card';
 
-const ArticleListPage = ({ history, location: { state, pathname } }) => {
-  const { title, image } = state;
+import './articleList.scss';
+
+const ArticleListPage = ({
+  articleState: { category, error, loading },
+  articleActions,
+  history,
+  location: { state, pathname }
+}) => {
+  const { categoryId } = state;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    articleActions.fetchAllArticleOfCategory(categoryId);
+  }, [categoryId, articleActions]);
+
+  const gotoHome = () => {
+    history.push({
+      pathname: config.ARTICLE_PAGE
+    });
+  };
+
+  const gotoArticle = (currentCategoryId, articleId) => {
+    history.push({
+      pathname: config.ARTICLE_DETAILS_PAGE,
+      state: { currentCategoryId, articleId }
+    });
+  };
 
   const head = () => (
     <Helmet key={`article-list-page-${Math.random()}`}>
-      <title>{translate('article.articles')}</title>
-      <meta property="og:title" content={translate('article.articles')} />
+      <title>{translate('article.browseAllArticles')}</title>
+      <meta property="og:title" content={translate('article.browseAllArticles')} />
       <meta name="description" content={translate('common.appDesc')} />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={`${config.PROD_URL}${pathname || ''}`} />
@@ -19,22 +51,70 @@ const ArticleListPage = ({ history, location: { state, pathname } }) => {
   );
 
   return (
-    <div className="article-list-container">
+    <div className="article-list-container container">
       {head()}
-      <h4>{title}</h4>
-      <img className="responsive-img" src={image} alt={title} />
+      {loading && <LoadingIndicator />}
+      {!loading && error
+        ? (
+          <Fragment>
+            <Message title={translate('article.noFound')} description={translate('common.backToHomeDesc')} />
+            <a className="waves-effect waves-light btn blue" onClick={gotoHome}>{translate('common.home')}</a>
+          </Fragment>
+        )
+        : null
+      }
+      {category && Object.keys(category).length && (
+        <section className="section category-container" key={category.id}>
+          <LocaleContext.Consumer>
+            {({ lang }) => (
+              <Fragment>
+                <div className="title-header-section">
+                  <h1 className="title">{`${category.title[lang]} (${category.articleCount})`}</h1>
+                </div>
+                <img className="responsive-img header-img" src={category.image} alt={category.title[lang]} />
+                <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
+                <h5>{translate('common.categoryNote')}</h5>
+                <div className="top-articles-container">
+                  {
+                    category.articles.map((article) => (
+                      <Card
+                        key={article.id}
+                        title={article.title[lang]}
+                        image={article.image}
+                        onSelect={() => gotoArticle(category.id, article.id)}
+                      />
+                    ))
+                  }
+                </div>
+              </Fragment>
+            )}
+          </LocaleContext.Consumer>
+        </section>
+      )}
     </div>
   );
 };
 
+const mapStateToProps = (state) => ({
+  articleState: state.article
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  articleActions: bindActionCreators(articleActionCreator, dispatch)
+});
+
 ArticleListPage.propTypes = {
   location: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
+  articleState: PropTypes.object,
+  articleActions: PropTypes.object
 };
 
 ArticleListPage.defaultProps = {
   location: {},
-  history: {}
+  history: {},
+  articleState: {},
+  articleActions: {}
 };
 
-export default ArticleListPage;
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleListPage);

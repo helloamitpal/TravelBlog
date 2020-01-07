@@ -3,31 +3,6 @@ const ArticleModel = require('./ArticleModel');
 const config = require('../../config');
 
 class ArticleService {
-  async getAllArticles(req) {
-    const { categoryId } = req.params;
-    const { categories } = data;
-
-    if (!categoryId) {
-      throw new Error('categoryId is not provided');
-    }
-
-    const selectedCategory = categories.find(({ id }) => (id === categoryId));
-
-    if (!selectedCategory) {
-      throw new Error('categoryId is not found.');
-    }
-
-    const arr = selectedCategory.articles.map(({ id, title, image }) => (
-      new ArticleModel({
-        id,
-        title,
-        image
-      })
-    ));
-
-    return arr;
-  }
-
   async getArticle(req) {
     const { categoryId, articleId } = req.params;
     const { categories } = data;
@@ -48,13 +23,15 @@ class ArticleService {
       throw new Error('articleId is not found.');
     }
 
-    const { id, title, image, description } = selectedArticle;
+    const { id, title, image, description, created, amended } = selectedArticle;
 
     return new ArticleModel({
       id,
       title,
       image,
-      description
+      description,
+      created,
+      amended
     });
   }
 

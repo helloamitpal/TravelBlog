@@ -1,10 +1,8 @@
 class ArticleModel {
-  constructor({ title, image, description, id, amended }) {
-    const date = new Date().toISOString();
-
+  constructor({ title, image, description, id, amended, created }) {
     this.id = id;
-    this.created = date;
-    this.amended = amended || date;
+    this.created = created || null;
+    this.amended = amended || null;
     this.title = title || {};
     this.image = image || '';
     this.description = description || {};

@@ -9,6 +9,10 @@
   "categories": [{
     "created": "2020-01-01T02:05:31.176Z",
     "amended": "2020-01-01T02:05:31.176Z",
+    "description": {
+      "en": "<u>This book</u> is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "de": "This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham."
+    },
     "id": "cat1",
     "title": {
       "en": "One day trip from Bangalore",
@@ -31,6 +35,10 @@
     }]
   }, {
     "id": "cat2",
+    "description": {
+      "en": "<u>This book</u> is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "de": "This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham."
+    },
     "title": {
       "en": "Outside India",
       "de": "Outside India"
@@ -54,6 +62,10 @@
     }]
   }, {
     "id": "cat3",
+    "description": {
+      "en": "<u>This book</u> is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "de": "This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact origina form, accompanied by English versions from the 1914 translation by H. Rackham."
+    },
     "created": "2020-01-07T02:05:31.176Z",
     "amended": "2020-01-07T02:05:31.176Z",
     "title": {

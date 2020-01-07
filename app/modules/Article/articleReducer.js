@@ -5,6 +5,7 @@ import translate from '../../locale';
 
 const initialState = {
   categories: [],
+  category: {},
   article: {},
   error: '',
   loading: false
@@ -58,6 +59,29 @@ const articleReducer = (state = initialState, action = '') => {
             return {
               ...prevState,
               article: { ...payload }
+            };
+          }
+          return failureMessage(prevState);
+        },
+        failure: prevState => failureMessage(prevState, payload),
+        finish: prevState => ({
+          ...prevState,
+          loading: false
+        })
+      });
+
+    case actionTypes.FETCH_ARTICLES_OF_CATEGORY:
+      return handle(state, action, {
+        start: prevState => ({
+          ...prevState,
+          error: '',
+          loading: true
+        }),
+        success: prevState => {
+          if (payload) {
+            return {
+              ...prevState,
+              category: { ...payload }
             };
           }
           return failureMessage(prevState);

@@ -15,3 +15,11 @@ export const fetchArticleDetails = (categoryId, articleId) => (dispatch, getStat
     payload: {}
   });
 };
+
+export const fetchAllArticleOfCategory = (categoryId) => (dispatch, getState, { api }) => {
+  dispatch({
+    type: actionTypes.FETCH_ARTICLES_OF_CATEGORY,
+    promise: api.get(`/category/${categoryId}/getAll`),
+    payload: {}
+  });
+};

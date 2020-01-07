@@ -2,5 +2,6 @@
   "articles": "Articles",
   "latestArticles": "Latest Articles",
   "article": "Article",
-  "noFound": "Article not found"
+  "noFound": "Article not found",
+  "browseAllArticles": "Browse all articles"
 }

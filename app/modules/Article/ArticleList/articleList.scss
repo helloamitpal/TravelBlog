@@ -1,0 +1,28 @@
+.article-list-container {
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.5em 0;
+  }
+
+  .header-img {
+    width: 100%;
+    max-height: 20em;
+  }
+
+  .description {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  h5 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 1em 0;
+  }
+
+  .top-articles-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

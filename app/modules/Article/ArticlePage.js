@@ -49,16 +49,12 @@ const ArticlePage = ({
 
   const renderCategories = () => {
     return categories.map(({ title, image, articles, id, articleCount }) => (
-      <section className="section category-container" key={id}>
+      <section className="category-container" key={id}>
         <LocaleContext.Consumer>
           {({ lang }) => (
             <Fragment>
               <div className="title-header-section">
-                <h1>{`${title[lang]} (${articleCount})`}</h1>
-                {articleCount > config.MAX_ARTICLE_SHOW
-                  ? <span className="link" onClick={() => gotoAllArticles(id)}>Show all</span>
-                  : null
-                }
+                <h1 className="link" onClick={() => gotoAllArticles(id)}>{`${title[lang]} (${articleCount})`}</h1>
               </div>
               <div className="top-articles-container">
                 {
@@ -82,7 +78,7 @@ const ArticlePage = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     articleActions.fetchCategories();
-  }, []);
+  }, [articleActions]);
 
   return (
     <Fragment>
@@ -95,7 +91,7 @@ const ArticlePage = ({
           {
             categories && categories.length ? (
               <div className="section">
-                <h1 className="category-title">Explore all categories</h1>
+                <h1 className="category-title">{translate('common.browseAllCategories')}</h1>
                 <div className="row">{renderCategories()}</div>
               </div>
             ) : null
