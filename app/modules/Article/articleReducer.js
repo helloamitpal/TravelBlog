@@ -4,7 +4,8 @@ import * as actionTypes from './articleActionTypes';
 import translate from '../../locale';
 
 const initialState = {
-  articles: [],
+  categories: [],
+  article: {},
   error: '',
   loading: false
 };
@@ -22,7 +23,7 @@ const articleReducer = (state = initialState, action = '') => {
   const { type, payload } = action;
 
   switch (type) {
-    case actionTypes.FETCH_ARTICLES:
+    case actionTypes.FETCH_CATEGORIES:
       return handle(state, action, {
         start: prevState => ({
           ...prevState,
@@ -30,10 +31,33 @@ const articleReducer = (state = initialState, action = '') => {
           loading: true
         }),
         success: prevState => {
-          if (payload.articles) {
+          if (payload) {
             return {
               ...prevState,
-              articles: [...payload.articles]
+              categories: [...payload]
+            };
+          }
+          return failureMessage(prevState);
+        },
+        failure: prevState => failureMessage(prevState, payload),
+        finish: prevState => ({
+          ...prevState,
+          loading: false
+        })
+      });
+
+    case actionTypes.FETCH_ARTICLE_DETAILS:
+      return handle(state, action, {
+        start: prevState => ({
+          ...prevState,
+          error: '',
+          loading: true
+        }),
+        success: prevState => {
+          if (payload) {
+            return {
+              ...prevState,
+              article: { ...payload }
             };
           }
           return failureMessage(prevState);

@@ -8,7 +8,8 @@ class CategoryService {
     const { categories } = data;
 
     const arr = categories.map(({ title, image, articles, id }) => {
-      const topArticles = articles.splice(0, MAX_ARTICLE_COUNT);
+      const articleCount = articles.length;
+      const topArticles = articles.slice(0, MAX_ARTICLE_COUNT);
       const articleList = topArticles.map((articleObj, index) => (
         new ArticleModel({
           id: articleObj.id,
@@ -21,6 +22,7 @@ class CategoryService {
         id,
         title,
         image,
+        articleCount,
         articles: articleList
       });
     });

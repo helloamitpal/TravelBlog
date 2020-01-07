@@ -6,6 +6,7 @@ import { anchorate } from 'anchorate';
 import config from '../config';
 import NotFoundModule from '../modules/NotFound/Loadable';
 import ArticleModule from '../modules/Article/Loadable';
+import ArticleListModule from '../modules/Article/ArticleList/Loadable';
 import ArticleDetailsModule from '../modules/Article/Details/Loadable';
 import Header from '../components/molecules/Header';
 import Footer from '../components/molecules/Footer';
@@ -40,7 +41,8 @@ const Router = ({ history }) => {
         <Header onChangeLocale={onChangeLocale} navbarClassName={nonHomePage ? 'blue' : ''} />
         <div className="body-container container">
           <Switch>
-            <Route exact path={[config.ARTICLE_PAGE, config.SPEICIFIC_ARTICLE_PAGE]} render={(props) => <ArticleModule {...props} />} />
+            <Route exact path={config.ARTICLE_PAGE} render={(props) => <ArticleModule {...props} />} />
+            <Route exact path={config.ARTICLES_PAGE} render={(props) => <ArticleListModule {...props} />} />
             <Route exact path={config.ARTICLE_DETAILS_PAGE} render={(props) => <ArticleDetailsModule {...props} />} />
             <Route path="" render={(props) => <NotFoundModule {...props} />} />
           </Switch>

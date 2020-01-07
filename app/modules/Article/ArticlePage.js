@@ -13,14 +13,14 @@ import Newsletter from '../../components/molecules/Newsletter';
 import Introduction from '../../components/molecules/Introduction';
 import Aboutus from '../../components/molecules/Aboutus';
 import Card from '../../components/atoms/Card';
+import LocaleContext from '../../locale/localeContext';
 
 import './article.scss';
 
 const ArticlePage = ({
-  articleState: { articles, error, loading },
+  articleState: { categories, error, loading },
   articleActions,
   history,
-  match,
   location: { pathname }
 }) => {
   const head = () => (
@@ -29,28 +29,60 @@ const ArticlePage = ({
       <meta property="og:title" content={translate('common.appName')} />
       <meta name="description" content={translate('common.appDesc')} />
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={`https://react-csr-template.herokuapp.com${pathname || ''}`} />
+      <link rel="canonical" href={`${config.PROD_URL}${pathname || ''}`} />
     </Helmet>
   );
 
-  const gotoArticleDetails = article => {
+  const gotoAllArticles = (categoryId) => {
     history.push({
-      pathname: config.ARTICLE_DETAILS_PAGE,
-      state: { ...article }
+      pathname: config.ARTICLES_PAGE,
+      state: { categoryId }
     });
   };
 
-  const renderArticles = () => {
-    return articles.map((article) => (
-      <Card title={article.title} image={article.urlToImage} onSelect={() => gotoArticleDetails(article)} className="col s12 m6 l6 xl4" />
+  const gotoArticle = (categoryId, articleId) => {
+    history.push({
+      pathname: config.ARTICLE_DETAILS_PAGE,
+      state: { categoryId, articleId }
+    });
+  };
+
+  const renderCategories = () => {
+    return categories.map(({ title, image, articles, id, articleCount }) => (
+      <section className="section category-container" key={id}>
+        <LocaleContext.Consumer>
+          {({ lang }) => (
+            <Fragment>
+              <div className="title-header-section">
+                <h1>{`${title[lang]} (${articleCount})`}</h1>
+                {articles.length > config.MAX_ARTICLE_SHOW
+                  ? <span className="link" onClick={gotoAllArticles(id)}>Show all</span>
+                  : null
+                }
+              </div>
+              <div className="top-articles-container">
+                {
+                  articles.map((article) => (
+                    <Card
+                      key={article.id}
+                      title={article.title[lang]}
+                      image={article.image}
+                      onSelect={() => gotoArticle(id, article.id)}
+                    />
+                  ))
+                }
+              </div>
+            </Fragment>
+          )}
+        </LocaleContext.Consumer>
+      </section>
     ));
   };
 
   useEffect(() => {
-    const id = (match.params && match.params.id) || '';
     window.scrollTo(0, 0);
-    articleActions.fetchArticles(id);
-  }, [match.params]);
+    articleActions.fetchCategories();
+  }, []);
 
   return (
     <Fragment>
@@ -61,9 +93,10 @@ const ArticlePage = ({
         {!loading && error && <Message type="error" title={translate('common.oops')} description={error} />}
         <div className="row">
           {
-            articles && articles.length ? (
+            categories && categories.length ? (
               <div className="section">
-                <div className="row">{renderArticles()}</div>
+                <h1 className="category-title">Explore all categories</h1>
+                <div className="row">{renderCategories()}</div>
               </div>
             ) : null
           }
@@ -87,7 +120,6 @@ ArticlePage.propTypes = {
   articleState: PropTypes.object,
   articleActions: PropTypes.object,
   history: PropTypes.object,
-  match: PropTypes.object,
   location: PropTypes.object
 };
 
@@ -95,7 +127,6 @@ ArticlePage.defaultProps = {
   articleState: {},
   articleActions: {},
   history: {},
-  match: {},
   location: {}
 };
 

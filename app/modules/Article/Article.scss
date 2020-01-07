@@ -1,5 +1,32 @@
 @import '../../styles/colors.scss';
 
 .article-page-container {
+  padding: 0 10px;
 
+  .category-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0.5em 0;
+  }
+
+  .category-container {
+    .title-header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 1em 0;
+    }
+
+    .top-articles-container {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+  }
 }

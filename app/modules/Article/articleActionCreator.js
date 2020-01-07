@@ -1,18 +1,17 @@
 import * as actionTypes from './articleActionTypes';
-import config from '../../config';
 
-export const fetchArticles = source => (dispatch, getState, { api }) => {
-  const param = source ? `sources=${source}` : 'country=us';
-
-  api.get('/api/v1/category/getAll').then((resp) => {
-    debugger;
-  }, () => {
-    debugger;
-  });
-
+export const fetchCategories = () => (dispatch, getState, { api }) => {
   dispatch({
-    type: actionTypes.FETCH_ARTICLES,
-    promise: api.get(`/top-headlines?${param}&apiKey=${config.API_KEY}`),
+    type: actionTypes.FETCH_CATEGORIES,
+    promise: api.get('/category/getAll'),
+    payload: {}
+  });
+};
+
+export const fetchArticleDetails = (categoryId, articleId) => (dispatch, getState, { api }) => {
+  dispatch({
+    type: actionTypes.FETCH_ARTICLE_DETAILS,
+    promise: api.get(`/article/${categoryId}/${articleId}`),
     payload: {}
   });
 };

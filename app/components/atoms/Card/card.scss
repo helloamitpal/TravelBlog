@@ -1,8 +1,13 @@
 @import '../../../styles/colors.scss';
 
 .card-container {
+  &:not(:last-child) {
+    padding-right: 0.8em;
+  }
+
   .card {
-    height: 20em;
+    height: 12em;
+    width: 16em;
     position: relative;
 
     .card-image {
@@ -28,7 +33,7 @@
       background-image: $card-content-background;
 
       .card-title {
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin: 0;
       }
     }

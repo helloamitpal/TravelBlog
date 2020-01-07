@@ -9,7 +9,7 @@ const LocaleSelector = ({ langs, onChangeLocale, className }) => {
   return (
     <div className={`locale-selector-container ${className}`}>
       <LocaleContext.Consumer>
-        {({ lang, changeLocale }) => (
+        {({ lang }) => (
           langs.map(({ value, label }, index) => (
             <Fragment key={`locale-selector-${value}`}>
               <span onClick={() => onChangeLocale(value)}>{label}</span>

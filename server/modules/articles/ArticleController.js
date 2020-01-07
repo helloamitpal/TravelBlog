@@ -18,6 +18,14 @@ class ArticleController {
       return ResponseHandler(res, HttpStatusCode.error.INTERNAL_SERVER_ERROR, message);
     });
   }
+
+  getLatestArticles(req, res) {
+    ArticleService.getLatestArticles(req).then((data) => {
+      return ResponseHandler(res, HttpStatusCode.success.SUCCESS, data);
+    }).catch(({ message }) => {
+      return ResponseHandler(res, HttpStatusCode.error.INTERNAL_SERVER_ERROR, message);
+    });
+  }
 }
 
 module.exports = ArticleController;

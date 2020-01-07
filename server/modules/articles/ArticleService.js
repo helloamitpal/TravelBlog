@@ -1,5 +1,6 @@
 const data = require('../../mock.json');
 const ArticleModel = require('./ArticleModel');
+const config = require('../../config');
 
 class ArticleService {
   async getAllArticles(req) {
@@ -55,6 +56,29 @@ class ArticleService {
       image,
       description
     });
+  }
+
+  async getLatestArticles(req) {
+    const { count } = req.params;
+    const { categories } = data;
+    const articleArr = [];
+    const topArticleCount = count || config.TOP_ARTICLES_COUNT;
+
+    categories.forEach(({ articles }) => {
+      articles.forEach(({ title, image, id }) => {
+        articleArr.push(new ArticleModel({
+          title,
+          image,
+          id
+        }));
+      });
+    });
+
+    articleArr.sort((param1, param2) => {
+      return new Date(param2.amended) - new Date(param1.amended);
+    });
+
+    return articleArr.slice(0, topArticleCount);
   }
 }
 
