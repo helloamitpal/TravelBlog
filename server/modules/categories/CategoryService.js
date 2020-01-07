@@ -62,6 +62,22 @@ class CategoryService {
 
     return arr;
   }
+
+  async getMetadata() {
+    const { metadata: { visitedCountriesCount }, categories, subscribers } = data;
+    const totalSubscribers = subscribers.length;
+    let articleCount = 0;
+
+    categories.forEach(({ articles }) => {
+      articleCount += articles.length;
+    });
+
+    return {
+      visitedCountriesCount,
+      articleCount,
+      totalSubscribers
+    };
+  }
 }
 
 module.exports = new CategoryService();

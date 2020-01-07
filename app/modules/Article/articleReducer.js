@@ -7,6 +7,7 @@ const initialState = {
   categories: [],
   category: {},
   article: {},
+  metadata: {},
   error: '',
   loading: false
 };
@@ -82,6 +83,29 @@ const articleReducer = (state = initialState, action = '') => {
             return {
               ...prevState,
               category: { ...payload }
+            };
+          }
+          return failureMessage(prevState);
+        },
+        failure: prevState => failureMessage(prevState, payload),
+        finish: prevState => ({
+          ...prevState,
+          loading: false
+        })
+      });
+
+    case actionTypes.FETCH_CATEGORY_METADATA:
+      return handle(state, action, {
+        start: prevState => ({
+          ...prevState,
+          error: '',
+          loading: true
+        }),
+        success: prevState => {
+          if (payload) {
+            return {
+              ...prevState,
+              metadata: { ...payload }
             };
           }
           return failureMessage(prevState);

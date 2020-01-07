@@ -23,3 +23,11 @@ export const fetchAllArticleOfCategory = (categoryId) => (dispatch, getState, { 
     payload: {}
   });
 };
+
+export const getMetadata = () => (dispatch, getState, { api }) => {
+  dispatch({
+    type: actionTypes.FETCH_CATEGORY_METADATA,
+    promise: api.get('/category/getMetadata'),
+    payload: {}
+  });
+};

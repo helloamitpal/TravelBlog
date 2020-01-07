@@ -68,7 +68,7 @@ const ArticleListPage = ({
             {({ lang }) => (
               <Fragment>
                 <div className="title-header-section">
-                  <h1 className="title">{`${category.title[lang]} (${category.articleCount})`}</h1>
+                  <h1 className="title">{category.title[lang]}</h1>
                 </div>
                 <img className="responsive-img header-img" src={category.image} alt={category.title[lang]} />
                 <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />

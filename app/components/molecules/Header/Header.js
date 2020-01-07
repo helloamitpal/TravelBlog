@@ -71,7 +71,7 @@ const Header = ({ onChangeLocale, isHomePage }) => {
             <div className="sidenav-overlay" style={menuOpen ? { display: 'block', opacity: 1 } : null} onClick={toggleMenu} />
             <ul id="slide-out" className="sidenav" style={menuOpen ? { transform: 'translateX(0px)' } : null}>
               <li>
-                <a className="subheader blue" onClick={toggleMenu}>{translate('common.appName')}</a>
+                <a className="subheader blue">{translate('common.appName')}</a>
               </li>
               <li>
                 <div className="divider" />
