@@ -8,7 +8,7 @@ import translate from '../../../locale';
 
 import './header.scss';
 
-const Header = ({ onChangeLocale, navbarClassName }) => {
+const Header = ({ onChangeLocale, isHomePage }) => {
   const [menuOpen, setMenuToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollYPos } = useScroll();
@@ -17,22 +17,39 @@ const Header = ({ onChangeLocale, navbarClassName }) => {
     setScrolled(scrollYPos >= 50);
   }, [scrollYPos]);
 
-  const toggleMenu = () => setMenuToggle(!menuOpen);
+  const toggleMenu = (evt, isToggleMenu = true) => {
+    evt.stopPropagation();
 
-  const menus = (
+    if (isToggleMenu) {
+      setMenuToggle(!menuOpen);
+    }
+  };
+
+  const getMenus = (isToggleMenu = true) => (
     <Fragment>
       <li>
-        <Link to="#categories" className="item">
+        {
+          (isToggleMenu || (!isToggleMenu && !isHomePage))
+            ? (
+              <Link to="/" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+                {translate('common.home')}
+              </Link>
+            )
+            : null
+        }
+      </li>
+      <li>
+        <Link to="#categories" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.categories')}
         </Link>
       </li>
       <li>
-        <Link to="#aboutus" className="item">
+        <Link to="#aboutus" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.aboutus')}
         </Link>
       </li>
       <li>
-        <Link to="#newsletter" className="item">
+        <Link to="#newsletter" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.contactUs')}
         </Link>
       </li>
@@ -41,31 +58,28 @@ const Header = ({ onChangeLocale, navbarClassName }) => {
 
   return (
     <div className="header-container navbar-fixed">
-      <nav className={navbarClassName || (scrolled ? 'blue' : 'transparent')}>
+      <nav className={(!isHomePage || scrolled) ? 'blue' : 'transparent'}>
         <div className="container">
           <div className="nav-wrapper">
             <a href="/" className="brand-logo" />
             <LocaleSelector className="right" onChangeLocale={onChangeLocale} />
             <span onClick={toggleMenu} className="sidenav-trigger">
-              <i className="material-icons">menu</i>
+              <span />
+              <span />
+              <span />
             </span>
             <div className="sidenav-overlay" style={menuOpen ? { display: 'block', opacity: 1 } : null} onClick={toggleMenu} />
             <ul id="slide-out" className="sidenav" style={menuOpen ? { transform: 'translateX(0px)' } : null}>
               <li>
-                <a className="subheader">{translate('common.appName')}</a>
+                <a className="subheader blue" onClick={toggleMenu}>{translate('common.appName')}</a>
               </li>
               <li>
                 <div className="divider" />
               </li>
-              <li>
-                <Link to="/" className="item" onClick={toggleMenu}>
-                  {translate('common.home')}
-                </Link>
-              </li>
-              {menus}
+              {getMenus()}
             </ul>
             <ul id="nav-mobile" className="right hide-on-med-and-down nav-menus">
-              {menus}
+              {getMenus(false)}
             </ul>
           </div>
         </div>
@@ -76,12 +90,12 @@ const Header = ({ onChangeLocale, navbarClassName }) => {
 
 Header.propTypes = {
   onChangeLocale: PropTypes.func,
-  navbarClassName: PropTypes.string
+  isHomePage: PropTypes.bool
 };
 
 Header.defaultProps = {
   onChangeLocale: null,
-  navbarClassName: ''
+  isHomePage: true
 };
 
 export default Header;

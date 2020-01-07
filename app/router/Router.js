@@ -16,7 +16,7 @@ import { setLocaleCookie } from '../services/cookieService';
 const Router = ({ history }) => {
   const [selectedLocale, setSelectedLocale] = useState(config.FALLBACK_LANGUAGE);
   const { location: { pathname } } = history;
-  const [nonHomePage, setNonHomePage] = useState(pathname !== '/');
+  const [homePage, setHomePage] = useState(pathname === '/');
 
   // setting up cookie for default language
   useEffect(() => {
@@ -26,7 +26,7 @@ const Router = ({ history }) => {
   // adopting hash anchor
   history.listen(() => {
     anchorate();
-    setNonHomePage(history.location.pathname !== '/');
+    setHomePage(history.location.pathname === '/');
   });
 
   // updating cookie if language is selected
@@ -37,8 +37,8 @@ const Router = ({ history }) => {
 
   return (
     <LocaleContext.Provider value={{ lang: selectedLocale }}>
-      <div className={`app-container ${nonHomePage ? 'non-home-page' : ''}`}>
-        <Header onChangeLocale={onChangeLocale} navbarClassName={nonHomePage ? 'blue' : ''} />
+      <div className={`app-container ${homePage ? '' : 'non-home-page'}`}>
+        <Header onChangeLocale={onChangeLocale} isHomePage={homePage} />
         <div className="body-container container">
           <Switch>
             <Route exact path={config.ARTICLE_PAGE} render={(props) => <ArticleModule {...props} />} />

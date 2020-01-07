@@ -1,3 +1,5 @@
+@import '../../../styles/colors.scss';
+
 .header-container {
   .locale-selector-container.subheader {
     padding: 0 32px;
@@ -12,11 +14,34 @@
   }
 
   .sidenav .subheader {
-    font-weight: bold;
+    color: $secondary-font-color;
   }
 
   .sidenav-trigger {
-    margin: 0;
+    margin: 0.3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    span {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin-bottom: 5px;
+      position: relative;
+      background: $secondary-font-color;
+      border-radius: 3px;
+      z-index: 1;
+      transform-origin: 4px 0px;
+
+      &:first-child {
+        transform-origin: 0% 0%;
+      }
+
+      &:nth-last-child(2) {
+        transform-origin: 0% 100%;
+      }
+    }
   }
 
   .blue,

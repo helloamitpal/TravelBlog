@@ -56,10 +56,9 @@ const ArticleListPage = ({
       {loading && <LoadingIndicator />}
       {!loading && error
         ? (
-          <Fragment>
-            <Message title={translate('article.noFound')} description={translate('common.backToHomeDesc')} />
+          <Message title={translate('article.noFound')} description={translate('common.backToHomeDesc')}>
             <a className="waves-effect waves-light btn blue" onClick={gotoHome}>{translate('common.home')}</a>
-          </Fragment>
+          </Message>
         )
         : null
       }
