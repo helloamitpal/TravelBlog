@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const proxy = require('http-proxy-middleware');
+// const proxy = require('http-proxy-middleware');
 
 const logger = require('./util/logger');
 const argv = require('./util/argv');
@@ -16,11 +16,11 @@ const setupMiddleware = require('./middlewares/frontendMiddleware');
 const app = express();
 
 // setting up proxy
-const apiProxy = proxy('/top-headlines', {
-  target: 'https://newsapi.org/v2',
-  changeOrigin: true
-});
-app.use(apiProxy);
+// const apiProxy = proxy('/top-headlines', {
+//   target: 'https://newsapi.org/v2',
+//   changeOrigin: true
+// });
+// app.use(apiProxy);
 
 // making .env file to process.env
 dotenv.config();

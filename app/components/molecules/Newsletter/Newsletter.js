@@ -11,6 +11,10 @@ import youtubeIcon from '../../../../public/assets/youtube.svg';
 import './newsletter.scss';
 
 const Newsletter = () => {
+  const subscribeUser = (evt) => {
+    evt.stopPropagation();
+  };
+
   return (
     <div className="newsletter-container" id="newsletter">
       <div className="newsletter">
@@ -18,23 +22,23 @@ const Newsletter = () => {
         <h4 className="sub-title">{translate('common.newsletterDesc')}</h4>
         <div className="row">
           <div className="col s12 m12 l4">
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder={translate('common.fullName')} maxLength="200" />
           </div>
           <div className="col s12 m12 l4">
-            <input type="email" placeholder="Email" />
+            <input type="email" placeholder={translate('common.email')} maxLength="200" />
           </div>
           <div className="col s12 m12 l4 subscribe-btn">
-            <a className="btn blue">{translate('common.subscribe')}</a>
+            <a className="waves-effect waves-light btn blue" onClick={subscribeUser}>{translate('common.subscribe')}</a>
           </div>
         </div>
         <div className="icon-social row">
-          <a className="facebook col">
+          <a className="facebook col" href={config.FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
             <img src={facebookIcon} alt="facebook" />
           </a>
-          <a className="instagram col">
+          <a className="instagram col" href={config.INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
             <img src={instagramIcon} alt="instagram" />
           </a>
-          <a className="col youtube">
+          <a className="col youtube" href={config.YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
             <img src={youtubeIcon} alt="youtube" />
           </a>
           <a className="col email" href={`mailto:${config.EMAIL}`}>

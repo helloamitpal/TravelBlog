@@ -42,7 +42,7 @@ const Router = ({ history }) => {
         <div className="body-container container">
           <Switch>
             <Route exact path={config.ARTICLE_PAGE} render={(props) => <ArticleModule {...props} />} />
-            <Route exact path={config.ARTICLES_PAGE} render={(props) => <ArticleListModule {...props} />} />
+            <Route exact path={config.ARTICLE_LIST_PAGE} render={(props) => <ArticleListModule {...props} />} />
             <Route exact path={config.ARTICLE_DETAILS_PAGE} render={(props) => <ArticleDetailsModule {...props} />} />
             <Route path="" render={(props) => <NotFoundModule {...props} />} />
           </Switch>

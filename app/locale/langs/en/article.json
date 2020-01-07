@@ -1,5 +1,6 @@
 {
   "articles": "Articles",
   "latestArticles": "Latest Articles",
-  "article": "Article"
+  "article": "Article",
+  "noFound": "Article not found"
 }

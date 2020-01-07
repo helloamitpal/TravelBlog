@@ -25,7 +25,7 @@ const ArticleDetailsPage = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     articleActions.fetchArticleDetails(categoryId, articleId);
-  }, []);
+  }, [categoryId, articleId, articleActions]);
 
   const head = () => (
     <Helmet key={`article-details-page-${Math.random()}`}>
@@ -50,24 +50,21 @@ const ArticleDetailsPage = ({
       {!loading && error
         ? (
           <Fragment>
-            <Message
-              title="Article not found"
-              description="Please go back to the home page to find out all categories and related articles"
-            />
-            <a className="waves-effect waves-light btn blue" onClick={gotoHome}>Home</a>
+            <Message title={translate('article.noFound')} description={translate('common.backToHomeDesc')} />
+            <a className="waves-effect waves-light btn blue" onClick={gotoHome}>{translate('common.home')}</a>
           </Fragment>
         )
         : null
       }
-      {article && (
+      {Object.keys(article).length && (
         <div className="details">
           <LocaleContext.Consumer>
             {({ lang }) => (
               <Fragment>
                 <h4 className="title">{article.title[lang]}</h4>
-                <h5 className="published-on">{`Published on ${moment(article.created).format(config.DATE_FORMAT)}`}</h5>
+                <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
                 <img className="responsive-img header-img" src={article.image} alt={article.title[lang]} />
-                <p>{article.description[lang]}</p>
+                <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
               </Fragment>
             )}
           </LocaleContext.Consumer>

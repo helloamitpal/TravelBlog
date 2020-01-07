@@ -1,5 +1,5 @@
 export default {
   ARTICLE_PAGE: '/',
   ARTICLE_DETAILS_PAGE: '/full-article',
-  ARTICLES_PAGE: '/list-of-articles'
+  ARTICLE_LIST_PAGE: '/list-of-articles'
 };

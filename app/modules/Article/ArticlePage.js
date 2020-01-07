@@ -35,7 +35,7 @@ const ArticlePage = ({
 
   const gotoAllArticles = (categoryId) => {
     history.push({
-      pathname: config.ARTICLES_PAGE,
+      pathname: config.ARTICLE_LIST_PAGE,
       state: { categoryId }
     });
   };
@@ -55,8 +55,8 @@ const ArticlePage = ({
             <Fragment>
               <div className="title-header-section">
                 <h1>{`${title[lang]} (${articleCount})`}</h1>
-                {articles.length > config.MAX_ARTICLE_SHOW
-                  ? <span className="link" onClick={gotoAllArticles(id)}>Show all</span>
+                {articleCount > config.MAX_ARTICLE_SHOW
+                  ? <span className="link" onClick={() => gotoAllArticles(id)}>Show all</span>
                   : null
                 }
               </div>
