@@ -5,7 +5,7 @@ router.get('/:categoryId/:articleId', (req, res, next) => {
   ArticleLoader.getController().getArticle(req, res);
 });
 
-router.get('/getLatestArticles/:count', (req, res, next) => {
+router.get('/getLatest', (req, res, next) => {
   ArticleLoader.getController().getLatestArticles(req, res);
 });
 

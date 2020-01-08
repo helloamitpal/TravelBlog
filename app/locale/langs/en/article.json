@@ -3,5 +3,6 @@
   "latestArticles": "Latest Articles",
   "article": "Article",
   "noFound": "Article not found",
-  "browseAllArticles": "Browse all articles"
+  "browseAllArticles": "Browse all articles",
+  "articleCount": "${COUNT} articles"
 }

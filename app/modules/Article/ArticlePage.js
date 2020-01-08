@@ -18,7 +18,7 @@ import LocaleContext from '../../locale/localeContext';
 import './article.scss';
 
 const ArticlePage = ({
-  articleState: { categories, error, loading, metadata },
+  articleState: { categories, error, loading, metadata, latestArticles },
   articleActions,
   history,
   location: { pathname }
@@ -53,8 +53,9 @@ const ArticlePage = ({
         <LocaleContext.Consumer>
           {({ lang }) => (
             <Fragment>
-              <div className="title-header-section">
-                <h1 className="link" onClick={() => gotoAllArticles(id)}>{`${title[lang]} (${articleCount})`}</h1>
+              <div className="title-header-section" onClick={() => gotoAllArticles(id)}>
+                <h1 className="link">{title[lang]}</h1>
+                <i>{translate('article.articleCount', { COUNT: articleCount })}</i>
               </div>
               <div className="top-articles-container">
                 {
@@ -78,12 +79,13 @@ const ArticlePage = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     articleActions.getMetadata();
+    articleActions.getLatestArticles();
     articleActions.fetchCategories();
   }, [articleActions]);
 
   return (
     <Fragment>
-      <Introduction noOfArticles={metadata.articleCount} visitedCountries={metadata.visitedCountriesCount} />
+      <Introduction noOfArticles={metadata.articleCount} visitedCountries={metadata.visitedCountriesCount} latestArticles={latestArticles} />
       <div className="article-page-container" id="categories">
         {head()}
         {loading && <LoadingIndicator />}

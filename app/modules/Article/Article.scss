@@ -10,15 +10,17 @@
 
   .category-container {
     .title-header-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 1.2em;
-      font-weight: bold;
       margin: 1em 0;
+
+      i {
+        font-size: 0.8em;
+      }
+
+      h1 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 0;
+      }
     }
 
     .top-articles-container {

@@ -31,3 +31,11 @@ export const getMetadata = () => (dispatch, getState, { api }) => {
     payload: {}
   });
 };
+
+export const getLatestArticles = () => (dispatch, getState, { api }) => {
+  dispatch({
+    type: actionTypes.FETCH_LATEST_ARTICLES,
+    promise: api.get('/article/getLatest'),
+    payload: {}
+  });
+};

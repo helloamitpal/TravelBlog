@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './card.scss';
 
@@ -14,7 +13,7 @@ const Card = ({ title, image, onSelect, className }) => {
     <div className={`card-container ${className}`} key={title}>
       <div className="card" onClick={onClickCard}>
         <div className="card-image">
-          <LazyLoadImage alt={title} src={image} />
+          <img alt={title} src={image} />
         </div>
         <div className="card-content">
           <span className="card-title">{title}</span>

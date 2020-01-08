@@ -23,6 +23,10 @@
   .latest-article {
     color: $font-color;
     margin-top: 1em;
+
+    .active-indicator {
+      background-color: rgba(0,0,0,0.7) !important;
+    }
   }
 
   .banner-section h1 {
@@ -41,9 +45,8 @@
     font-size: 2.8em !important;
   }
 
-  .introduction-container .card {
+  .introduction-container .carousel-container {
     width: 100% !important;
-    height: 100% !important;
   }
 
   .app-container {

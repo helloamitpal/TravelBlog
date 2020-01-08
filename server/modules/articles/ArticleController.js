@@ -12,7 +12,7 @@ class ArticleController {
   }
 
   getLatestArticles(req, res) {
-    ArticleService.getLatestArticles(req).then((data) => {
+    ArticleService.getLatestArticles().then((data) => {
       return ResponseHandler(res, HttpStatusCode.success.SUCCESS, data);
     }).catch(({ message }) => {
       return ResponseHandler(res, HttpStatusCode.error.INTERNAL_SERVER_ERROR, message);

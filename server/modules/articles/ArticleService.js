@@ -35,11 +35,9 @@ class ArticleService {
     });
   }
 
-  async getLatestArticles(req) {
-    const { count } = req.params;
+  async getLatestArticles() {
     const { categories } = data;
     const articleArr = [];
-    const topArticleCount = count || config.TOP_ARTICLES_COUNT;
 
     categories.forEach(({ articles }) => {
       articles.forEach(({ title, image, id }) => {
@@ -55,7 +53,7 @@ class ArticleService {
       return new Date(param2.amended) - new Date(param1.amended);
     });
 
-    return articleArr.slice(0, topArticleCount);
+    return articleArr.slice(0, config.TOP_ARTICLES_COUNT);
   }
 }
 

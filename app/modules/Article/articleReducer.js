@@ -5,6 +5,7 @@ import translate from '../../locale';
 
 const initialState = {
   categories: [],
+  latestArticles: [],
   category: {},
   article: {},
   metadata: {},
@@ -106,6 +107,29 @@ const articleReducer = (state = initialState, action = '') => {
             return {
               ...prevState,
               metadata: { ...payload }
+            };
+          }
+          return failureMessage(prevState);
+        },
+        failure: prevState => failureMessage(prevState, payload),
+        finish: prevState => ({
+          ...prevState,
+          loading: false
+        })
+      });
+
+    case actionTypes.FETCH_LATEST_ARTICLES:
+      return handle(state, action, {
+        start: prevState => ({
+          ...prevState,
+          error: '',
+          loading: true
+        }),
+        success: prevState => {
+          if (payload) {
+            return {
+              ...prevState,
+              latestArticles: [...payload]
             };
           }
           return failureMessage(prevState);
