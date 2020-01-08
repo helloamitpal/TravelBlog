@@ -27,6 +27,29 @@ nav ul a {
   font-weight: bold;
 }
 
-.brand-logo {
-  font-weight: bold;
+.framed {
+  box-shadow: 0 0 7px 2px $frame-box-shadow-color;
+  border: 10px solid $divider-border-color
+}
+
+.arrow {
+  &.right {
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em;
+    border: 0.2em solid $arrow-border-color;
+    border-radius: 50%;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      margin-top: 0.6em;
+      margin-left: 0.3em;
+      width: 1em;
+      height: 1em;
+      border-top: 0.2em solid $arrow-border-color;
+      border-right: 0.2em solid $arrow-border-color;
+      transform: rotate(45deg);
+    }
+  }
 }

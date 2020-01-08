@@ -8,7 +8,22 @@
     margin: 0.5em 0;
   }
 
+  .show-all {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 3em;
+
+    .text {
+      white-space: nowrap;
+      margin-bottom: 0.5em;
+    }
+  }
+
   .category-container {
+    margin-top: 1.5em;
+
     .title-header-section {
       margin: 1em 0;
 

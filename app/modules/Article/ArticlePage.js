@@ -68,6 +68,14 @@ const ArticlePage = ({
                     />
                   ))
                 }
+                {articleCount > config.TOP_ARTICLES_COUNT
+                  ? (
+                    <div className="show-all">
+                      <span className="text">Show All</span>
+                      <span className="arrow right" />
+                    </div>
+                  ) : null
+                }
               </div>
             </Fragment>
           )}

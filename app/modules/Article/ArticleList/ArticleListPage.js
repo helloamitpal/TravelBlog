@@ -70,7 +70,7 @@ const ArticleListPage = ({
                 <div className="title-header-section">
                   <h1 className="title">{category.title[lang]}</h1>
                 </div>
-                <img className="responsive-img header-img" src={category.image} alt={category.title[lang]} />
+                <img className="responsive-img header-img framed" src={category.image} alt={category.title[lang]} />
                 <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
                 <h5>{translate('common.categoryNote')}</h5>
                 <div className="top-articles-container">
