@@ -1,3 +1,5 @@
+@import '../../../styles/colors.scss';
+
 .carousel-container {
   overflow: hidden;
   position: relative;
@@ -17,7 +19,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.7);
+      background: $active-carousel-indicator;
       margin: 0 5px;
 
       &.active {
