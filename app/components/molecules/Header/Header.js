@@ -1,16 +1,21 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import LocaleSelector from '../../atoms/LocaleSelector';
+import LocaleContext from '../../../locale/localeContext';
 import { useScroll } from '../../hooks/useScroll';
 import translate from '../../../locale';
+import Menu from '../../atoms/Menu';
+import config from '../../../config';
 
 import './header.scss';
 
-const Header = ({ onChangeLocale, isHomePage }) => {
+const Header = ({ onChangeLocale, isHomePage, history, articleState: { categories } }) => {
   const [menuOpen, setMenuToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang } = useContext(LocaleContext);
   const { scrollYPos } = useScroll();
 
   useEffect(() => {
@@ -23,6 +28,13 @@ const Header = ({ onChangeLocale, isHomePage }) => {
     if (isToggleMenu) {
       setMenuToggle(!menuOpen);
     }
+  };
+
+  const gotoCategory = (categoryId) => {
+    history.push({
+      pathname: config.ARTICLE_LIST_PAGE,
+      state: { categoryId }
+    });
   };
 
   const getMenus = (isToggleMenu = true) => (
@@ -39,9 +51,20 @@ const Header = ({ onChangeLocale, isHomePage }) => {
         }
       </li>
       <li>
-        <Link to="/#categories" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
-          {translate('common.categories')}
-        </Link>
+        {categories && categories.length
+          ? (
+            <Menu dropdown={!isToggleMenu} label={translate('common.categories')}>
+              <ul className="submenu-container">
+                {
+                  categories.map(({ title, id }) => (
+                    <li key={id} onClick={() => gotoCategory(id)}>{title[lang]}</li>
+                  ))
+                }
+              </ul>
+            </Menu>
+          )
+          : null
+        }
       </li>
       <li>
         <Link to="/#aboutus" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
@@ -87,14 +110,22 @@ const Header = ({ onChangeLocale, isHomePage }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  articleState: state.article
+});
+
 Header.propTypes = {
   onChangeLocale: PropTypes.func,
-  isHomePage: PropTypes.bool
+  isHomePage: PropTypes.bool,
+  history: PropTypes.object,
+  articleState: PropTypes.object
 };
 
 Header.defaultProps = {
   onChangeLocale: null,
-  isHomePage: true
+  isHomePage: true,
+  history: {},
+  articleState: {}
 };
 
-export default Header;
+export default connect(mapStateToProps, null)(withRouter(Header));

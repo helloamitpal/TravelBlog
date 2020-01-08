@@ -20,7 +20,7 @@ const ArticleDetailsPage = ({
   history,
   location: { state, pathname }
 }) => {
-  const { categoryId, articleId } = state;
+  const { categoryId, articleId } = state || {};
   const { lang } = useContext(LocaleContext);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const ArticleDetailsPage = ({
     <div className="article-details-container container">
       {head()}
       {loading && <LoadingIndicator />}
-      {!loading && error
+      {!loading && error && (!article || !Object.keys(article).length)
         ? (
           <Message title={translate('article.noFound')} description={translate('common.backToHomeDesc')}>
             <a className="waves-effect waves-light btn blue" onClick={gotoHome}>{translate('common.home')}</a>

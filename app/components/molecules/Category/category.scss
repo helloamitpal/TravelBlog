@@ -16,6 +16,8 @@
 
   .title-header-section {
     margin: 1em 0;
+    display: flex;
+    flex-direction: column;
 
     i {
       font-size: 0.8em;
@@ -25,6 +27,7 @@
       font-size: 1.2em;
       font-weight: bold;
       margin: 0;
+      display: inline-block;
     }
   }
 
