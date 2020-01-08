@@ -61,7 +61,6 @@ const Header = ({ onChangeLocale, isHomePage }) => {
       <nav className={(!isHomePage || scrolled) ? 'blue' : 'transparent'}>
         <div className="container">
           <div className="nav-wrapper">
-            <a href="/" className="brand-logo" />
             <LocaleSelector className="right" onChangeLocale={onChangeLocale} />
             <span onClick={toggleMenu} className="sidenav-trigger">
               <span />

@@ -26,5 +26,6 @@
   "backToHomeDesc": "Please go back to the home page to find out all categories and related articles",
   "publishedOn": "Published on ${DATE}",
   "browseAllCategories": "Browse all categories",
-  "categoryNote": "Check out our stories"
+  "categoryNote": "Check out our stories",
+  "showAll": "Show All"
 }
