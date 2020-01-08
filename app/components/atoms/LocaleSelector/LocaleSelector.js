@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import LocaleContext from '../../../locale/localeContext';
@@ -6,18 +6,18 @@ import LocaleContext from '../../../locale/localeContext';
 import './localeSelector.scss';
 
 const LocaleSelector = ({ langs, onChangeLocale, className }) => {
+  const { lang } = useContext(LocaleContext);
+
   return (
     <div className={`locale-selector-container ${className}`}>
-      <LocaleContext.Consumer>
-        {({ lang }) => (
-          langs.map(({ value, label }, index) => (
-            <Fragment key={`locale-selector-${value}`}>
-              <span onClick={() => onChangeLocale(value)}>{label}</span>
-              {index < langs.length - 1 ? <span className="divider" /> : null}
-            </Fragment>
-          ))
-        )}
-      </LocaleContext.Consumer>
+      {
+        langs.map(({ value, label }, index) => (
+          <Fragment key={`locale-selector-${value}`}>
+            <span className={`${lang === value ? 'bold' : ''}`} onClick={() => onChangeLocale(value)}>{label}</span>
+            {index < langs.length - 1 ? <span className="divider" /> : null}
+          </Fragment>
+        ))
+      }
     </div>
   );
 };

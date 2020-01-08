@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
@@ -21,6 +21,7 @@ const ArticleListPage = ({
   location: { state, pathname }
 }) => {
   const { categoryId } = state;
+  const { lang } = useContext(LocaleContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,30 +65,24 @@ const ArticleListPage = ({
       }
       {category && Object.keys(category).length && (
         <section className="section category-container" key={category.id}>
-          <LocaleContext.Consumer>
-            {({ lang }) => (
-              <Fragment>
-                <div className="title-header-section">
-                  <h1 className="title">{category.title[lang]}</h1>
-                </div>
-                <img className="responsive-img header-img framed" src={category.image} alt={category.title[lang]} />
-                <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
-                <h5>{translate('common.categoryNote')}</h5>
-                <div className="top-articles-container">
-                  {
-                    category.articles.map((article) => (
-                      <Card
-                        key={article.id}
-                        title={article.title[lang]}
-                        image={article.image}
-                        onSelect={() => gotoArticle(category.id, article.id)}
-                      />
-                    ))
-                  }
-                </div>
-              </Fragment>
-            )}
-          </LocaleContext.Consumer>
+          <div className="title-header-section">
+            <h1 className="title">{category.title[lang]}</h1>
+          </div>
+          <img className="responsive-img header-img framed" src={category.image} alt={category.title[lang]} />
+          <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
+          <h5>{translate('common.categoryNote')}</h5>
+          <div className="top-articles-container">
+            {
+              category.articles.map((article) => (
+                <Card
+                  key={article.id}
+                  title={article.title[lang]}
+                  image={article.image}
+                  onSelect={() => gotoArticle(category.id, article.id)}
+                />
+              ))
+            }
+          </div>
         </section>
       )}
     </div>

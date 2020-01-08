@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useContext } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Helmet } from 'react-helmet';
@@ -12,8 +12,8 @@ import translate from '../../locale';
 import Newsletter from '../../components/molecules/Newsletter';
 import Introduction from '../../components/molecules/Introduction';
 import Aboutus from '../../components/molecules/Aboutus';
-import Card from '../../components/atoms/Card';
 import LocaleContext from '../../locale/localeContext';
+import Category from '../../components/molecules/Category';
 
 import './article.scss';
 
@@ -23,6 +23,8 @@ const ArticlePage = ({
   history,
   location: { pathname }
 }) => {
+  const { lang } = useContext(LocaleContext);
+
   const head = () => (
     <Helmet key={`article-page-${Math.random()}`}>
       <title>{translate('common.appName')}</title>
@@ -33,54 +35,9 @@ const ArticlePage = ({
     </Helmet>
   );
 
-  const gotoAllArticles = (categoryId) => {
-    history.push({
-      pathname: config.ARTICLE_LIST_PAGE,
-      state: { categoryId }
-    });
-  };
-
-  const gotoArticle = (categoryId, articleId) => {
-    history.push({
-      pathname: config.ARTICLE_DETAILS_PAGE,
-      state: { categoryId, articleId }
-    });
-  };
-
   const renderCategories = () => {
     return categories.map(({ title, image, articles, id, articleCount }) => (
-      <section className="category-container" key={id}>
-        <LocaleContext.Consumer>
-          {({ lang }) => (
-            <Fragment>
-              <div className="title-header-section" onClick={() => gotoAllArticles(id)}>
-                <h1 className="link">{title[lang]}</h1>
-                <i>{translate('article.articleCount', { COUNT: articleCount })}</i>
-              </div>
-              <div className="top-articles-container">
-                {
-                  articles.map((article) => (
-                    <Card
-                      key={article.id}
-                      title={article.title[lang]}
-                      image={article.image}
-                      onSelect={() => gotoArticle(id, article.id)}
-                    />
-                  ))
-                }
-                {articleCount > config.TOP_ARTICLES_COUNT
-                  ? (
-                    <div className="show-all">
-                      <span className="text">{translate('common.showAll')}</span>
-                      <span className="arrow right" />
-                    </div>
-                  ) : null
-                }
-              </div>
-            </Fragment>
-          )}
-        </LocaleContext.Consumer>
-      </section>
+      <Category key={id} {...{ title, image, articles, id, articleCount, lang, history }} />
     ));
   };
 
@@ -93,7 +50,11 @@ const ArticlePage = ({
 
   return (
     <Fragment>
-      <Introduction noOfArticles={metadata.articleCount} visitedCountries={metadata.visitedCountriesCount} latestArticles={latestArticles} />
+      <Introduction
+        noOfArticles={metadata.articleCount}
+        visitedCountries={metadata.visitedCountriesCount}
+        latestArticles={latestArticles}
+      />
       <div className="article-page-container" id="categories">
         {head()}
         {loading && <LoadingIndicator />}

@@ -1,47 +1,8 @@
-@import '../../styles/colors.scss';
-
 .article-page-container {
   .category-title {
     font-size: 2em;
     font-weight: bold;
     text-transform: uppercase;
     margin: 0.5em 0;
-  }
-
-  .show-all {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 3em;
-
-    .text {
-      white-space: nowrap;
-      margin-bottom: 0.5em;
-    }
-  }
-
-  .category-container {
-    margin-top: 1.5em;
-
-    .title-header-section {
-      margin: 1em 0;
-
-      i {
-        font-size: 0.8em;
-      }
-
-      h1 {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin: 0;
-      }
-    }
-
-    .top-articles-container {
-      display: flex;
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
   }
 }

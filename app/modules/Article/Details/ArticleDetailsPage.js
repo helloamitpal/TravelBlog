@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,6 +21,7 @@ const ArticleDetailsPage = ({
   location: { state, pathname }
 }) => {
   const { categoryId, articleId } = state;
+  const { lang } = useContext(LocaleContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,16 +58,10 @@ const ArticleDetailsPage = ({
       }
       {Object.keys(article).length && (
         <div className="details">
-          <LocaleContext.Consumer>
-            {({ lang }) => (
-              <Fragment>
-                <h4 className="title">{article.title[lang]}</h4>
-                <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
-                <img className="responsive-img header-img framed" src={article.image} alt={article.title[lang]} />
-                <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
-              </Fragment>
-            )}
-          </LocaleContext.Consumer>
+          <h4 className="title">{article.title[lang]}</h4>
+          <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
+          <img className="responsive-img header-img framed" src={article.image} alt={article.title[lang]} />
+          <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
         </div>
       )}
     </div>

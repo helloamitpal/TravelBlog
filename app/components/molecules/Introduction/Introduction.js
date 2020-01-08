@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import config from '../../../config';
 import './introduction.scss';
 
 const Introduction = ({ noOfArticles, visitedCountries, latestArticles, history }) => {
+  const { lang } = useContext(LocaleContext);
   const onSelectCard = (articleId, categoryId) => {
     history.push({
       pathname: config.ARTICLE_DETAILS_PAGE,
@@ -40,24 +41,18 @@ const Introduction = ({ noOfArticles, visitedCountries, latestArticles, history 
       </div>
       <div className="latest-article col s12 m12 l6">
         <h1>{translate('article.latestArticles')}</h1>
-        <LocaleContext.Consumer>
+        <Carousel>
           {
-            ({ lang }) => (
-              <Carousel>
-                {
-                  latestArticles.map(({ id, title, image, parentCategoryId }) => (
-                    <Card
-                      key={id}
-                      title={title[lang]}
-                      image={image}
-                      onSelect={() => onSelectCard(id, parentCategoryId)}
-                    />
-                  ))
-                }
-              </Carousel>
-            )
+            latestArticles.map(({ id, title, image, parentCategoryId }) => (
+              <Card
+                key={id}
+                title={title[lang]}
+                image={image}
+                onSelect={() => onSelectCard(id, parentCategoryId)}
+              />
+            ))
           }
-        </LocaleContext.Consumer>
+        </Carousel>
       </div>
     </div>
   );
