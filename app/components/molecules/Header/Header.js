@@ -39,17 +39,17 @@ const Header = ({ onChangeLocale, isHomePage }) => {
         }
       </li>
       <li>
-        <Link to="#categories" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+        <Link to="/#categories" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.categories')}
         </Link>
       </li>
       <li>
-        <Link to="#aboutus" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+        <Link to="/#aboutus" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.aboutus')}
         </Link>
       </li>
       <li>
-        <Link to="#newsletter" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+        <Link to="/#newsletter" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
           {translate('common.contactUs')}
         </Link>
       </li>
