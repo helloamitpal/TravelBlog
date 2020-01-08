@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/locale/langs/locales.json
+app/locale/langs/locales.json
 
 # testing
 coverage

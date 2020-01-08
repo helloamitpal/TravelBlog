@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import Card from '../../atoms/Card';
 import translate from '../../../locale';
 import LocaleContext from '../../../locale/localeContext';
 import Carousel from '../../atoms/Carousel';
+import config from '../../../config';
 
 import './introduction.scss';
 
-const Introduction = ({ noOfArticles, visitedCountries, latestArticles }) => {
-  const onSelectCard = (cardIndex) => {
-
+const Introduction = ({ noOfArticles, visitedCountries, latestArticles, history }) => {
+  const onSelectCard = (articleId, categoryId) => {
+    history.push({
+      pathname: config.ARTICLE_DETAILS_PAGE,
+      state: { categoryId, articleId }
+    });
   };
 
   return (
@@ -38,13 +43,14 @@ const Introduction = ({ noOfArticles, visitedCountries, latestArticles }) => {
         <LocaleContext.Consumer>
           {
             ({ lang }) => (
-              <Carousel onSelectCard={onSelectCard}>
+              <Carousel>
                 {
-                  latestArticles.map(({ id, title, image }) => (
+                  latestArticles.map(({ id, title, image, parentCategoryId }) => (
                     <Card
                       key={id}
                       title={title[lang]}
                       image={image}
+                      onSelect={() => onSelectCard(id, parentCategoryId)}
                     />
                   ))
                 }
@@ -60,13 +66,15 @@ const Introduction = ({ noOfArticles, visitedCountries, latestArticles }) => {
 Introduction.propTypes = {
   noOfArticles: PropTypes.number,
   visitedCountries: PropTypes.number,
-  latestArticles: PropTypes.array
+  latestArticles: PropTypes.array,
+  history: PropTypes.object
 };
 
 Introduction.defaultProps = {
   noOfArticles: 0,
   visitedCountries: 0,
-  latestArticles: []
+  latestArticles: [],
+  history: {}
 };
 
-export default Introduction;
+export default withRouter(Introduction);

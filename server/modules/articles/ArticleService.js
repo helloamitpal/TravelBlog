@@ -39,12 +39,13 @@ class ArticleService {
     const { categories } = data;
     const articleArr = [];
 
-    categories.forEach(({ articles }) => {
-      articles.forEach(({ title, image, id }) => {
+    categories.forEach((category) => {
+      category.articles.forEach(({ title, image, id }) => {
         articleArr.push(new ArticleModel({
           title,
           image,
-          id
+          id,
+          parentCategoryId: category.id
         }));
       });
     });

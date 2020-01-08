@@ -3,18 +3,9 @@ import PropTypes from 'prop-types';
 
 import './carousel.scss';
 
-const Carousel = ({ children, className, onSelectCard }) => {
+const Carousel = ({ children, className }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const ANIMATION_INTERVAL = 5000; // in milliseconds
-
-  const onClickCard = (evt, cardIndex, dataObj) => {
-    evt.preventDefault();
-
-    if (cardIndex !== currentIndex) {
-      setCurrentIndex(cardIndex);
-      onSelectCard(cardIndex, dataObj);
-    }
-  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -36,11 +27,7 @@ const Carousel = ({ children, className, onSelectCard }) => {
       <div className="item-container">
         {
           Children.map(children, (item, index) => (
-            <div
-              className={`carousel-item ${currentIndex === index ? 'active' : ''}`}
-              key={`carousel-${index.toString()}`}
-              onClick={(evt) => onClickCard(evt, index, item)}
-            >
+            <div className={`carousel-item ${currentIndex === index ? 'active' : ''}`} key={`carousel-${index.toString()}`}>
               {item}
             </div>
           ))
@@ -59,8 +46,7 @@ const Carousel = ({ children, className, onSelectCard }) => {
 
 Carousel.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  className: PropTypes.string,
-  onSelectCard: PropTypes.func.isRequired
+  className: PropTypes.string
 };
 
 Carousel.defaultProps = {
