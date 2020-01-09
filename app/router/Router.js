@@ -11,10 +11,10 @@ import ArticleDetailsModule from '../modules/Article/Details/Loadable';
 import Header from '../components/molecules/Header';
 import Footer from '../components/molecules/Footer';
 import LocaleContext from '../locale/localeContext';
-import { setLocaleCookie } from '../services/cookieService';
+import { setLocaleCookie, getLocaleCookie } from '../services/cookieService';
 
 const Router = ({ history }) => {
-  const [selectedLocale, setSelectedLocale] = useState(config.FALLBACK_LANGUAGE);
+  const [selectedLocale, setSelectedLocale] = useState(getLocaleCookie() || config.FALLBACK_LANGUAGE);
   const { location: { pathname } } = history;
   const [homePage, setHomePage] = useState(pathname === '/');
 
