@@ -10,5 +10,15 @@ export default {
   DATE_FORMAT: 'MMMM Do YYYY',
   FACEBOOK_URL: 'www.facebook.com',
   INSTAGRAM_URL: 'www.instagram.com',
-  YOUTUBE_URL: 'www.youtube.com'
+  YOUTUBE_URL: 'www.youtube.com',
+  LANGUAGES: [{
+    label: 'EN',
+    value: 'en'
+  }, {
+    label: 'DE',
+    value: 'de'
+  }, {
+    label: 'FR',
+    value: 'fr'
+  }]
 };

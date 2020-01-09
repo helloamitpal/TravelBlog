@@ -13,6 +13,8 @@ import LocaleContext from '../../../locale/localeContext';
 import config from '../../../config';
 import Card from '../../../components/atoms/Card';
 
+import defaultImg from '../../../../public/assets/preview.jpg';
+
 import './articleList.scss';
 
 const ArticleListPage = ({
@@ -64,12 +66,12 @@ const ArticleListPage = ({
         )
         : null
       }
-      {category && Object.keys(category).length && (
+      {category && Object.keys(category).length ? (
         <section className="section category-container" key={category.id}>
           <div className="title-header-section">
             <h1 className="title">{category.title[lang]}</h1>
           </div>
-          <Img className="responsive-img header-img framed" crossOrigin="anonymous" src={category.image} alt={category.title[lang]} />
+          <Img className="responsive-img header-img framed" crossOrigin="anonymous" src={[category.image, defaultImg]} alt={category.title[lang]} />
           <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
           <h5>{translate('common.categoryNote')}</h5>
           <div className="top-articles-container">
@@ -85,7 +87,7 @@ const ArticleListPage = ({
             }
           </div>
         </section>
-      )}
+      ) : null}
     </div>
   );
 };

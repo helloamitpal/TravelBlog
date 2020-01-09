@@ -2,15 +2,23 @@
 
 .locale-selector-container {
   font-size: 0.8em !important;
-  margin: 0 10px;
 
-  span:not(.divider) {
-    cursor: pointer;
+  .menu-btn {
+    font-weight: bold;
     text-transform: uppercase;
   }
 
-  .divider {
-    margin: 0 3px !important;
-    border-right: 1px solid $divider-border-color;
+  .submenu-container {
+    min-width: 5em !important;
+
+    div {
+      line-height: 3em;
+      cursor: pointer;
+      padding: 0 1em;
+
+      &:hover {
+        background-color: $frame-box-shadow-color;
+      }
+    }
   }
 }

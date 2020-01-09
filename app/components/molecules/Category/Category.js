@@ -11,14 +11,14 @@ const Category = ({ title, image, articles, id, articleCount, lang, history }) =
   const gotoAllArticles = () => {
     history.push({
       pathname: config.ARTICLE_LIST_PAGE,
-      state: { id }
+      state: { categoryId: id }
     });
   };
 
   const gotoArticle = (articleId) => {
     history.push({
       pathname: config.ARTICLE_DETAILS_PAGE,
-      state: { id, articleId }
+      state: { categoryId: id, articleId }
     });
   };
 

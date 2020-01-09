@@ -1,1 +1,8 @@
-{}
+{
+  "articles": "Artikel",
+  "latestArticles": "Neueste Artikel",
+  "article": "Artikel",
+  "noFound": "Artikel nicht gefunden",
+  "browseAllArticles": "Durchsuchen Sie alle Artikel",
+  "articleCount": "${COUNT} Artikel"
+}

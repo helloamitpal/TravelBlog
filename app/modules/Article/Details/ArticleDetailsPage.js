@@ -13,6 +13,8 @@ import Message from '../../../components/atoms/Message';
 import LoadingIndicator from '../../../components/atoms/LoadingIndicator';
 import LocaleContext from '../../../locale/localeContext';
 
+import defaultImg from '../../../../public/assets/preview.jpg';
+
 import './ArticleDetails.scss';
 
 const ArticleDetailsPage = ({
@@ -57,14 +59,14 @@ const ArticleDetailsPage = ({
         )
         : null
       }
-      {Object.keys(article).length && (
+      {Object.keys(article).length ? (
         <div className="details">
           <h4 className="title">{article.title[lang]}</h4>
           <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
-          <Img crossOrigin="anonymous" className="responsive-img header-img framed" src={article.image} alt={article.title[lang]} />
+          <Img crossOrigin="anonymous" className="responsive-img header-img framed" src={[article.image, defaultImg]} alt={article.title[lang]} />
           <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

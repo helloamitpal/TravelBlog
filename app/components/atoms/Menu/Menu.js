@@ -41,7 +41,7 @@ Menu.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   dropdown: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 Menu.defaultProps = {

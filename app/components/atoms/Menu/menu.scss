@@ -2,6 +2,8 @@
 
 .menu-container {
   position: relative;
+  min-width: 3em;
+  text-align: center;
 
   &.accordion {
     color: $font-color;
@@ -24,12 +26,13 @@
     position: absolute;
     z-index: 9999;
     color: $secondary-font-color;
-    min-width: 18em;
+    text-align: left;
   }
 
   .menu-btn {
     position:relative;
     display:inline-block;
+    cursor: pointer;
 
     .menu-highlighter {
       position: absolute;
@@ -42,6 +45,7 @@
       transition: all 0.2s linear;
 
       &.opened {
+        min-width: 20px;
         width: 100%;
         transition: all 0.2s linear;
       }

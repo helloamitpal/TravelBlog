@@ -1,0 +1,8 @@
+{
+  "articles": "Des articles",
+  "latestArticles": "Derniers articles",
+  "article": "Article",
+  "noFound": "Article introuvable",
+  "browseAllArticles": "Parcourir tous les articles",
+  "articleCount": "${COUNT} des articles"
+}
