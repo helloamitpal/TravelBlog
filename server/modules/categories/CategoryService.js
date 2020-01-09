@@ -64,7 +64,7 @@ class CategoryService {
   }
 
   async getMetadata() {
-    const { metadata: { visitedCountriesCount }, categories, subscribers } = data;
+    const { metadata: { visitedCountriesCount, aboutus }, categories, subscribers } = data;
     const totalSubscribers = subscribers.length;
     let articleCount = 0;
 
@@ -75,7 +75,8 @@ class CategoryService {
     return {
       visitedCountriesCount,
       articleCount,
-      totalSubscribers
+      totalSubscribers,
+      aboutus
     };
   }
 }

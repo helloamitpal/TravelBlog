@@ -78,6 +78,18 @@ const Header = ({ onChangeLocale, isHomePage, history, articleState: { categorie
     </Fragment>
   );
 
+  const getMobileMenu = () => (
+    <ul id="slide-out" className="sidenav" style={menuOpen ? { transform: 'translateX(0px)' } : null}>
+      <li>
+        <a className="subheader blue">{translate('common.appName')}</a>
+      </li>
+      <li>
+        <div className="divider" />
+      </li>
+      {getMenus()}
+    </ul>
+  );
+
   return (
     <div className="header-container navbar-fixed">
       <nav className={(!isHomePage || scrolled) ? 'blue' : 'transparent'}>
@@ -85,20 +97,12 @@ const Header = ({ onChangeLocale, isHomePage, history, articleState: { categorie
           <div className="nav-wrapper">
             <LocaleSelector className="right" onChangeLocale={onChangeLocale} />
             <span onClick={toggleMenu} className="sidenav-trigger">
-              <span />
-              <span />
-              <span />
+              <i />
+              <i />
+              <i />
             </span>
             <div className="sidenav-overlay" style={menuOpen ? { display: 'block', opacity: 1 } : null} onClick={toggleMenu} />
-            <ul id="slide-out" className="sidenav" style={menuOpen ? { transform: 'translateX(0px)' } : null}>
-              <li>
-                <a className="subheader blue">{translate('common.appName')}</a>
-              </li>
-              <li>
-                <div className="divider" />
-              </li>
-              {getMenus()}
-            </ul>
+            {getMobileMenu()}
             <ul id="nav-mobile" className="right hide-on-med-and-down nav-menus">
               {getMenus(false)}
             </ul>

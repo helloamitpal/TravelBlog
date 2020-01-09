@@ -70,7 +70,7 @@ const ArticlePage = ({
           }
         </div>
       </div>
-      <Aboutus />
+      <Aboutus text={metadata.aboutus} />
       <Newsletter />
     </Fragment>
   );

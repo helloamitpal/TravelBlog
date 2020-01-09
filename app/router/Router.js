@@ -31,7 +31,7 @@ const Router = ({ history }) => {
 
   // updating cookie if language is selected
   const onChangeLocale = (val) => {
-    setLocaleCookie(selectedLocale);
+    setLocaleCookie(val);
     setSelectedLocale(val);
   };
 

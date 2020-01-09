@@ -1,7 +1,11 @@
 
 {
   "metadata": {
-    "visitedCountriesCount": 13
+    "visitedCountriesCount": 13,
+    "aboutus": {
+      "en": "Ourselves Amit and Manami, a nomad couple, IT professionals. We do put up in Bangalore. Travelling is our sole passion. This travel blog is for sharing our travel experiences to make your travel smoother. Hope you would find this reading worhy. Please do follow us on our below mentioned social channels or subscribe to our newsletters to get to know our new ventures.",
+      "de": "Ourselves Amit and Manami, a nomad couple, IT professionals. We do put up in Bangalore. Travelling is our sole passion. This travel blog is for sharing our travel experiences to make your travel smoother. Hope you would find this reading worhy. Please do follow us on our below mentioned social channels or subscribe to our newsletters to get to know our new ventures."
+    }
   },
   "subscribers": [{
     "name": "Amit Pal",
