@@ -3,11 +3,27 @@
 .menu-container {
   position: relative;
 
-  .dropdown {
+  &.accordion {
+    color: $font-color;
+
+    & > .item {
+      color: $font-color;
+      font-size: 14px;
+      font-weight: 500;
+      height: 3em;
+      line-height: 3em;
+      padding: 0 1em;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &.dropdown .menus {
     position: absolute;
     z-index: 9999;
-    background: $default-background-color;
-    color: $font-color;
+    color: $secondary-font-color;
     min-width: 18em;
   }
 
@@ -21,7 +37,7 @@
       bottom: 3px;
       width: 0px;
       height: 5px;
-      border-radius: 5px;
+      border-radius: 20px;
       border-bottom: 5px solid $input-focus-color;
       transition: all 0.2s linear;
 

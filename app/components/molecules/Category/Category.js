@@ -8,17 +8,17 @@ import config from '../../../config';
 import './category.scss';
 
 const Category = ({ title, image, articles, id, articleCount, lang, history }) => {
-  const gotoAllArticles = (categoryId) => {
+  const gotoAllArticles = () => {
     history.push({
       pathname: config.ARTICLE_LIST_PAGE,
-      state: { categoryId }
+      state: { id }
     });
   };
 
-  const gotoArticle = (categoryId, articleId) => {
+  const gotoArticle = (articleId) => {
     history.push({
       pathname: config.ARTICLE_DETAILS_PAGE,
-      state: { categoryId, articleId }
+      state: { id, articleId }
     });
   };
 
@@ -35,15 +35,15 @@ const Category = ({ title, image, articles, id, articleCount, lang, history }) =
               key={article.id}
               title={article.title[lang]}
               image={article.image}
-              onSelect={() => gotoArticle(id, article.id)}
+              onSelect={() => gotoArticle(article.id)}
             />
           ))
         }
         {articleCount > config.TOP_ARTICLES_COUNT
           ? (
-            <div className="show-all">
+            <div className="show-all" onClick={gotoAllArticles}>
               <span className="text">{translate('common.showAll')}</span>
-              <span className="arrow right" />
+              <span className="arrow-with-circle right" />
             </div>
           ) : null
         }

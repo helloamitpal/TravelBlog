@@ -22,28 +22,27 @@ const Header = ({ onChangeLocale, isHomePage, history, articleState: { categorie
     setScrolled(scrollYPos >= 50);
   }, [scrollYPos]);
 
-  const toggleMenu = (evt, isToggleMenu = true) => {
+  const toggleMenu = (evt) => {
     evt.stopPropagation();
 
-    if (isToggleMenu) {
-      setMenuToggle(!menuOpen);
-    }
+    setMenuToggle(!menuOpen);
   };
 
   const gotoCategory = (categoryId) => {
+    setMenuToggle(false);
     history.push({
       pathname: config.ARTICLE_LIST_PAGE,
       state: { categoryId }
     });
   };
 
-  const getMenus = (isToggleMenu = true) => (
+  const getMenus = (isMobileMenu = true) => (
     <Fragment>
       <li>
         {
-          (isToggleMenu || (!isToggleMenu && !isHomePage))
+          (isMobileMenu || (!isMobileMenu && !isHomePage))
             ? (
-              <Link to="/" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+              <Link to="/" className="item" onClick={() => setMenuToggle(false)}>
                 {translate('common.home')}
               </Link>
             )
@@ -53,26 +52,26 @@ const Header = ({ onChangeLocale, isHomePage, history, articleState: { categorie
       <li>
         {categories && categories.length
           ? (
-            <Menu dropdown={!isToggleMenu} label={translate('common.categories')}>
-              <ul className="submenu-container">
+            <Menu dropdown={!isMobileMenu} label={translate('common.categories')}>
+              <div className="submenu-container">
                 {
                   categories.map(({ title, id }) => (
-                    <li key={id} onClick={() => gotoCategory(id)}>{title[lang]}</li>
+                    <div key={id} onClick={() => gotoCategory(id)}>{title[lang]}</div>
                   ))
                 }
-              </ul>
+              </div>
             </Menu>
           )
           : null
         }
       </li>
       <li>
-        <Link to="/#aboutus" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+        <Link to="/#aboutus" className="item" onClick={() => setMenuToggle(false)}>
           {translate('common.aboutus')}
         </Link>
       </li>
       <li>
-        <Link to="/#newsletter" className="item" onClick={(evt) => toggleMenu(evt, isToggleMenu)}>
+        <Link to="/#newsletter" className="item" onClick={() => setMenuToggle(false)}>
           {translate('common.contactUs')}
         </Link>
       </li>

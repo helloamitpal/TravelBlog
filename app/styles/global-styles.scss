@@ -17,6 +17,10 @@ body {
   }
 }
 
+.sidenav li>a {
+  padding: 0 1em;
+}
+
 .transparent {
   background-color: transparent;
 }
@@ -33,27 +37,56 @@ nav ul a {
 
 .framed {
   box-shadow: 0 0 7px 2px $frame-box-shadow-color;
-  border: 10px solid $divider-border-color
+  border: 10px solid $divider-border-color;
 }
 
-.arrow {
+.arrow-with-circle {
   &.right {
     display: inline-block;
     width: 2.5em;
     height: 2.5em;
-    border: 0.2em solid $arrow-border-color;
+    border: 0.2em solid $font-color;
     border-radius: 50%;
 
     &:after {
       content: '';
       display: inline-block;
-      margin-top: 0.6em;
-      margin-left: 0.3em;
+      margin-top: 0.55em;
+      margin-left: 0.35em;
       width: 1em;
       height: 1em;
-      border-top: 0.2em solid $arrow-border-color;
-      border-right: 0.2em solid $arrow-border-color;
+      border-top: 0.2em solid $font-color;
+      border-right: 0.2em solid $font-color;
       transform: rotate(45deg);
     }
+  }
+}
+
+.arrow {
+  border: solid $font-color;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  height: 0.4em !important;
+  width: 0.4em;
+
+  &.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+  &.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
+  &.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  &.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
   }
 }
