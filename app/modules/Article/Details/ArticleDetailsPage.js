@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import Img from 'react-image';
 
 import translate from '../../../locale';
 import * as articleActionCreator from '../articleActionCreator';
@@ -60,7 +61,7 @@ const ArticleDetailsPage = ({
         <div className="details">
           <h4 className="title">{article.title[lang]}</h4>
           <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
-          <img className="responsive-img header-img framed" src={article.image} alt={article.title[lang]} />
+          <Img crossOrigin="anonymous" className="responsive-img header-img framed" src={article.image} alt={article.title[lang]} />
           <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
         </div>
       )}

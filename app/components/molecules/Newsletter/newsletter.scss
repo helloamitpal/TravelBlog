@@ -42,6 +42,10 @@
   .icon-social {
     margin-top: 1em;
 
+    a:hover {
+      transform: scale(1.2);
+    }
+
     img {
       width: 32px;
       height: 32px;

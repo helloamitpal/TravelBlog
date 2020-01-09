@@ -28,6 +28,7 @@
     "webpack",
     "redux-data-flow",
     "csr",
+    "express",
     "proxy-setup",
     "boilerplate"
   ],
@@ -73,7 +74,7 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-helmet": "^5.2.0",
-    "react-lazy-load-image-component": "^1.3.2",
+    "react-image": "^2.2.2",
     "react-loadable": "^5.5.0",
     "react-redux": "5.0.7",
     "react-router-dom": "^5.1.2",

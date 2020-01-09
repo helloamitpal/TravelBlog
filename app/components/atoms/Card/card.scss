@@ -1,6 +1,9 @@
 @import '../../../styles/colors.scss';
 
 .card-container {
+  padding-top: 2px;
+  padding-left: 1px;
+
   &:not(:last-child) {
     padding-right: 0.8em;
   }
@@ -13,6 +16,20 @@
 
     .card-image {
       overflow: hidden;
+
+      &:after {
+        content: "O";
+        position: absolute;
+        top: 35%;
+        color: $icon-color;
+        font-size: 2em;
+        left: 50%;
+        padding: 0 2px;
+        transform: translate(-50%, -35%) rotate(-45deg);
+        line-height: 0;
+        border-top: 1px solid $icon-color;
+        border-bottom: 1px solid $icon-color;
+      }
 
       &, img {
         height: 100%;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import debounce from 'lodash.debounce';
+import { debounce } from 'lodash';
 
 export function useScroll() {
   const [scrollXPos, setScrollXPos] = useState(0);

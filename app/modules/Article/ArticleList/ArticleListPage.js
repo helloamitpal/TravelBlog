@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Img from 'react-image';
 
 import translate from '../../../locale';
 import * as articleActionCreator from '../articleActionCreator';
@@ -68,7 +69,7 @@ const ArticleListPage = ({
           <div className="title-header-section">
             <h1 className="title">{category.title[lang]}</h1>
           </div>
-          <img className="responsive-img header-img framed" src={category.image} alt={category.title[lang]} />
+          <Img className="responsive-img header-img framed" crossOrigin="anonymous" src={category.image} alt={category.title[lang]} />
           <p className="description" dangerouslySetInnerHTML={{ __html: category.description[lang] }} />
           <h5>{translate('common.categoryNote')}</h5>
           <div className="top-articles-container">

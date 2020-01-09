@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'react-image';
 
 import './card.scss';
 
@@ -13,7 +14,7 @@ const Card = ({ title, image, onSelect, className }) => {
     <div className={`card-container ${className}`} key={title}>
       <div className="card" onClick={onClickCard}>
         <div className="card-image">
-          <img alt={title} src={image} />
+          <Img alt={title} src={image} crossOrigin="anonymous" />
         </div>
         <div className="card-content">
           <span className="card-title">{title}</span>
