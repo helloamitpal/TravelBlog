@@ -15,7 +15,7 @@ import Aboutus from '../../components/molecules/Aboutus';
 import LocaleContext from '../../locale/localeContext';
 import Category from '../../components/molecules/Category';
 
-import './article.scss';
+import './articlePage.scss';
 
 const ArticlePage = ({
   articleState: { categories, error, loading, metadata, latestArticles },
