@@ -17,7 +17,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    console.log('The app is crashed due to unknown reason');
+    // console.log('The app is crashed due to unknown reason');
   }
 
   render() {
