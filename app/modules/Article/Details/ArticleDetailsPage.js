@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import Img from 'react-image';
 
 import translate from '../../../locale';
+import util from '../../../services/util';
 import * as articleActionCreator from '../articleActionCreator';
 import config from '../../../config';
 import Message from '../../../components/atoms/Message';
@@ -62,7 +62,7 @@ const ArticleDetailsPage = ({
       {Object.keys(article).length ? (
         <div className="details">
           <h4 className="title">{article.title[lang]}</h4>
-          <h5 className="published-on">{translate('common.publishedOn', { DATE: moment(article.created).format(config.DATE_FORMAT) })}</h5>
+          <h5 className="published-on">{translate('common.publishedOn', { DATE: util.formatDate(article.created) })}</h5>
           <Img crossOrigin="anonymous" className="responsive-img header-img framed" src={[article.image, defaultImg]} alt={article.title[lang]} />
           <p dangerouslySetInnerHTML={{ __html: article.description[lang] }} />
         </div>
